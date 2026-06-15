@@ -30,14 +30,14 @@ export default async function LandingPage() {
   const manifest = await readManifest();
 
   const defaultStats = {
-    departmentCount: 0,
+    subjectCount: 0,
     examCount: 0,
     playableQuestionCount: 0,
   };
 
   const stats = manifest
     ? {
-        departmentCount: manifest.departments.length,
+        subjectCount: manifest.subjects.length,
         examCount: manifest.stats.examCount,
         playableQuestionCount: manifest.stats.playableQuestionCount,
       }

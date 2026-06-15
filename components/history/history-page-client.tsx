@@ -23,7 +23,7 @@ export function HistoryPageClient() {
           title="History"
           eyebrow="Alyah Technologies"
           subtitle="Review your previous attempts and keep improving."
-          backHref="/departments"
+          backHref="/subjects"
           backLabel="Subjects"
         />
 
@@ -36,7 +36,7 @@ export function HistoryPageClient() {
               >
                 <div>
                   <h2 className="text-lg font-semibold text-brand-text">
-                    {attempt.departmentName} · {attempt.displayYear}{" "}
+                    {attempt.subjectName} · {attempt.displayYear}{" "}
                     {attempt.variant === "model" ? "Model" : ""}
                   </h2>
                   <p className="mt-1 text-sm text-brand-textSecondary">

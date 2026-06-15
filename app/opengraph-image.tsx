@@ -12,7 +12,7 @@ export const contentType = "image/png";
 export default async function OpenGraphImage() {
   const manifest = await readManifest();
 
-  const departments = manifest?.departments.length ?? 0;
+  const subjects = manifest?.subjects.length ?? 0;
   const exams = manifest?.stats.examCount ?? 0;
   const questions = manifest?.stats.playableQuestionCount ?? 0;
 
@@ -79,7 +79,7 @@ export default async function OpenGraphImage() {
 
           <div style={{ display: "flex", gap: "18px" }}>
             {[
-              `${departments}+ subjects`,
+              `${subjects}+ subjects`,
               `${exams} exam sets`,
               `${questions.toLocaleString("en-US")} questions`,
             ].map((item) => (

@@ -3,20 +3,20 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 
-import type { DepartmentMeta } from "@/lib/exam/types";
+import type { SubjectMeta } from "@/lib/exam/types";
 import { Input } from "@/components/ui/input";
 import { Pill } from "@/components/ui/pill";
 import { PageHeader } from "@/components/ui/page-header";
 import { LandingFooter } from "@/components/landing/landing-footer";
 
-export function DepartmentList({ departments }: { departments: DepartmentMeta[] }) {
+export function SubjectList({ subjects }: { subjects: SubjectMeta[] }) {
   const [query, setQuery] = useState("");
 
   const filtered = useMemo(() => {
     const normalized = query.trim().toLowerCase();
-    if (!normalized) return departments;
-    return departments.filter((dept) => dept.name.toLowerCase().includes(normalized));
-  }, [departments, query]);
+    if (!normalized) return subjects;
+    return subjects.filter((subj) => subj.name.toLowerCase().includes(normalized));
+  }, [subjects, query]);
 
   return (
     <div className="page-bg min-h-screen flex flex-col">
@@ -31,7 +31,7 @@ export function DepartmentList({ departments }: { departments: DepartmentMeta[] 
         <section className="page-section mx-auto max-w-6xl">
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <div className="max-w-md text-sm text-brand-textSecondary">
-              {filtered.length} subjects · {departments.length} total
+              {filtered.length} subjects · {subjects.length} total
             </div>
             <div className="w-full md:max-w-sm">
               <Input
@@ -44,28 +44,28 @@ export function DepartmentList({ departments }: { departments: DepartmentMeta[] 
           </div>
 
           <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {filtered.map((dept) => (
+            {filtered.map((subj) => (
               <Link
-                key={dept.slug}
-                href={`/departments/${dept.slug}`}
+                key={subj.slug}
+                href={`/subjects/${subj.slug}`}
                 className="group rounded-2xl border border-brand-border bg-brand-bg p-6 transition hover:-translate-y-1 hover:border-brand-primary/40 hover:shadow-lg"
               >
                 <div className="flex items-center justify-between">
-                  <h2 className="text-lg font-semibold text-brand-text">{dept.name}</h2>
-                  <span className="text-xs font-semibold text-brand-primary/70">{dept.examCount} exams</span>
+                  <h2 className="text-lg font-semibold text-brand-text">{subj.name}</h2>
+                  <span className="text-xs font-semibold text-brand-primary/70">{subj.examCount} exams</span>
                 </div>
                 <p className="mt-2 text-sm text-brand-textSecondary">
-                  {dept.totalPlayableQuestions} playable questions
+                  {subj.totalPlayableQuestions} playable questions
                 </p>
                 <div className="mt-4 flex flex-wrap gap-2">
-                  {dept.years.slice(0, 4).map((year) => (
+                  {subj.years.slice(0, 4).map((year) => (
                     <Pill key={year} className="border-brand-primary/30 bg-brand-primary/8 text-brand-primary">
                       {year}
                     </Pill>
                   ))}
-                  {dept.years.length > 4 && (
+                  {subj.years.length > 4 && (
                     <Pill className="border-brand-border bg-brand-surface text-brand-textTertiary">
-                      +{dept.years.length - 4} more
+                      +{subj.years.length - 4} more
                     </Pill>
                   )}
                 </div>

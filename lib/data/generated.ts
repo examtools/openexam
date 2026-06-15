@@ -21,20 +21,20 @@ export async function readExamDataset(examId: string): Promise<ExamDataset | nul
   }
 }
 
-export async function getDepartments() {
+export async function getSubjects() {
   const manifest = await readManifest();
-  return manifest?.departments ?? [];
+  return manifest?.subjects ?? [];
 }
 
-export async function getDepartmentBySlug(slug: string) {
+export async function getSubjectBySlug(slug: string) {
   const manifest = await readManifest();
   if (!manifest) return null;
 
-  const department = manifest.departments.find((item) => item.slug === slug);
-  if (!department) return null;
+  const subject = manifest.subjects.find((item) => item.slug === slug);
+  if (!subject) return null;
 
   const exams = manifest.exams
-    .filter((exam) => exam.departmentSlug === slug)
+    .filter((exam) => exam.subjectSlug === slug)
     .sort((a, b) => {
       if (a.displayYear !== b.displayYear) return b.displayYear - a.displayYear;
       if (a.variant === b.variant) return 0;
@@ -42,7 +42,7 @@ export async function getDepartmentBySlug(slug: string) {
     });
 
   return {
-    department,
+    subject,
     exams,
   };
 }

@@ -34,14 +34,14 @@ export async function SiteJsonLd() {
       mainEntity: {
         "@type": "ItemList",
         name: "Ethiopian entrance exam subjects",
-        numberOfItems: manifest?.departments.length ?? 0,
+        numberOfItems: manifest?.subjects.length ?? 0,
       },
     },
     {
       "@context": "https://schema.org",
       "@type": "CollectionPage",
       name: "Entrance Exam Catalog",
-      url: absoluteUrl("/departments"),
+      url: absoluteUrl("/subjects"),
       description:
         "Browse Ethiopian entrance exams by subject, year, and available question volume.",
       isPartOf: {

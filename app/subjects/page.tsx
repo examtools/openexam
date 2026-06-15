@@ -1,8 +1,8 @@
 import { Metadata } from "next";
 
-import { DepartmentList } from "@/components/catalog/department-list";
+import { SubjectList } from "@/components/catalog/subject-list";
 import { StructuredData } from "@/components/seo/structured-data";
-import { getDepartments, readManifest } from "@/lib/data/generated";
+import { getSubjects, readManifest } from "@/lib/data/generated";
 import { buildPageMetadata, absoluteUrl } from "@/lib/seo/site";
 
 export const metadata: Metadata = {
@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     title: "Subjects for Entrance Exam Practice",
     description:
       "Browse Ethiopian Grade 12 entrance exams by subject, compare available years, and open free practice sets with instant feedback.",
-    path: "/departments",
+    path: "/subjects",
     keywords: [
       "ethiopian entrance exam subjects",
       "grade 12 entrance exam practice ethiopia",
@@ -21,25 +21,25 @@ export const metadata: Metadata = {
 
 export const revalidate = 86400;
 
-export default async function DepartmentsPage() {
-  const departments = await getDepartments();
+export default async function SubjectsPage() {
+  const subjects = await getSubjects();
   const manifest = await readManifest();
 
   const itemList = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     name: "Ethiopian entrance exam subjects",
-    url: absoluteUrl("/departments"),
+    url: absoluteUrl("/subjects"),
     description:
       "Subject directory for Ethiopian Grade 12 entrance exam practice, including year coverage and question totals.",
     mainEntity: {
       "@type": "ItemList",
-      numberOfItems: departments.length,
-      itemListElement: departments.slice(0, 20).map((department, index) => ({
+      numberOfItems: subjects.length,
+      itemListElement: subjects.slice(0, 20).map((subject, index) => ({
         "@type": "ListItem",
         position: index + 1,
-        name: department.name,
-        url: absoluteUrl(`/departments/${department.slug}`),
+        name: subject.name,
+        url: absoluteUrl(`/subjects/${subject.slug}`),
       })),
     },
     about: `${manifest?.stats.examCount ?? 0} Ethiopian entrance exam sets`,
@@ -47,8 +47,8 @@ export default async function DepartmentsPage() {
 
   return (
     <>
-      <StructuredData id="departments-jsonld" data={itemList} />
-      <DepartmentList departments={departments} />
+      <StructuredData id="subjects-jsonld" data={itemList} />
+      <SubjectList subjects={subjects} />
     </>
   );
 }

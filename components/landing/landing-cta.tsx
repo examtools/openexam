@@ -43,14 +43,14 @@ export function LandingCta() {
 
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
             <Link
-              href="/departments"
+              href="/subjects"
               className="inline-flex items-center gap-2 rounded-2xl bg-white px-8 py-4 text-base font-bold text-brand-primary shadow-xl transition-all hover:-translate-y-0.5 hover:shadow-2xl"
             >
               Start Practicing Now
               <ArrowRight className="h-5 w-5" />
             </Link>
             <Link
-              href="/departments"
+              href="/subjects"
               className="inline-flex items-center gap-2 rounded-2xl border border-white/20 bg-white/10 px-8 py-4 text-base font-semibold text-white backdrop-blur transition-all hover:-translate-y-0.5 hover:bg-white/20"
             >
               <BookOpen className="h-5 w-5" />

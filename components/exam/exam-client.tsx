@@ -325,7 +325,7 @@ export function ExamClient({ dataset }: { dataset: ExamDataset }) {
     const attempt: PersistedAttempt = {
       attemptId: createAttemptId(),
       examId: dataset.meta.examId,
-      departmentName: dataset.meta.departmentName,
+      subjectName: dataset.meta.subjectName,
       displayYear: dataset.meta.displayYear,
       variant: dataset.meta.variant,
       mode,
@@ -434,7 +434,7 @@ export function ExamClient({ dataset }: { dataset: ExamDataset }) {
           attempt={{
             attemptId: "current",
             examId: dataset.meta.examId,
-            departmentName: dataset.meta.departmentName,
+            subjectName: dataset.meta.subjectName,
             displayYear: dataset.meta.displayYear,
             variant: dataset.meta.variant,
             mode,

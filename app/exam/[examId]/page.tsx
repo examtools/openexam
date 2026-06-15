@@ -34,13 +34,13 @@ export async function generateMetadata({
   }
 
   return buildPageMetadata({
-      title: `${exam.departmentName} ${exam.displayYear}${exam.variant === "model" ? " Model" : ""} Entrance Exam`,
-    description: `Practice the ${exam.departmentName} ${exam.displayYear}${exam.variant === "model" ? " model" : ""} Ethiopian Grade 12 entrance exam with ${exam.playableQuestionCount} playable questions.`,
+      title: `${exam.subjectName} ${exam.displayYear}${exam.variant === "model" ? " Model" : ""} Entrance Exam`,
+    description: `Practice the ${exam.subjectName} ${exam.displayYear}${exam.variant === "model" ? " model" : ""} Ethiopian Grade 12 entrance exam with ${exam.playableQuestionCount} playable questions.`,
     path: `/exam/${exam.examId}`,
     keywords: [
-        `${exam.departmentName} ${exam.displayYear} entrance exam`,
-        `${exam.departmentName} entrance exam questions`,
-        `${exam.departmentName} Ethiopian entrance exam practice`,
+        `${exam.subjectName} ${exam.displayYear} entrance exam`,
+        `${exam.subjectName} entrance exam questions`,
+        `${exam.subjectName} Ethiopian entrance exam practice`,
     ],
   });
 }
@@ -55,7 +55,7 @@ export default async function ExamPage({ params }: { params: Promise<{ examId: s
         <main className="flex-1">
           <div className="mx-auto max-w-4xl px-6 py-16">
             <h1 className="text-2xl font-semibold text-brand-primaryDark">Exam not found</h1>
-            <Link href="/departments" className="mt-4 inline-flex text-sm text-brand-primary">
+            <Link href="/subjects" className="mt-4 inline-flex text-sm text-brand-primary">
               Back to subjects
             </Link>
           </div>
@@ -65,7 +65,7 @@ export default async function ExamPage({ params }: { params: Promise<{ examId: s
     );
   }
 
-  const label = `${dataset.meta.departmentName} / ${dataset.meta.displayYear}${
+  const label = `${dataset.meta.subjectName} / ${dataset.meta.displayYear}${
     dataset.meta.variant === "model" ? " Model" : ""
   } Entrance Exam`;
   const pageUrl = absoluteUrl(`/exam/${dataset.meta.examId}`);
@@ -83,13 +83,13 @@ export default async function ExamPage({ params }: { params: Promise<{ examId: s
         "@type": "ListItem",
         position: 2,
         name: "Subjects",
-        item: absoluteUrl("/departments"),
+        item: absoluteUrl("/subjects"),
       },
       {
         "@type": "ListItem",
         position: 3,
-        name: dataset.meta.departmentName,
-        item: absoluteUrl(`/departments/${dataset.meta.departmentSlug}`),
+        name: dataset.meta.subjectName,
+        item: absoluteUrl(`/subjects/${dataset.meta.subjectSlug}`),
       },
       {
         "@type": "ListItem",
@@ -104,13 +104,13 @@ export default async function ExamPage({ params }: { params: Promise<{ examId: s
     "@type": "LearningResource",
     name: label,
     url: pageUrl,
-    description: `Interactive Ethiopian entrance exam practice page for ${dataset.meta.departmentName}, ${dataset.meta.displayYear}.`,
+    description: `Interactive Ethiopian entrance exam practice page for ${dataset.meta.subjectName}, ${dataset.meta.displayYear}.`,
     learningResourceType: "Practice Exam",
     educationalLevel: "Grade 12",
     isAccessibleForFree: true,
     inLanguage: "en",
     numberOfQuestions: dataset.meta.playableQuestionCount,
-    about: dataset.meta.departmentName,
+    about: dataset.meta.subjectName,
   };
 
   return (
@@ -122,8 +122,8 @@ export default async function ExamPage({ params }: { params: Promise<{ examId: s
           title={label}
           eyebrow="Exam Session"
           subtitle={`${dataset.meta.playableQuestionCount} questions`}
-          backHref={`/departments/${dataset.meta.departmentSlug}`}
-          backLabel={dataset.meta.departmentName}
+          backHref={`/subjects/${dataset.meta.subjectSlug}`}
+          backLabel={dataset.meta.subjectName}
         />
         <section className="page-section">
           <Suspense

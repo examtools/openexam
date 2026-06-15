@@ -43,8 +43,8 @@ export type NormalizedQuestion = {
 
 export type ExamMeta = {
   examId: string;
-  departmentName: string;
-  departmentSlug: string;
+  subjectName: string;
+  subjectSlug: string;
   sourceYear: number;
   displayYear: number;
   variant: ExamVariant;
@@ -63,7 +63,7 @@ export type ExamDataset = {
   questions: NormalizedQuestion[];
 };
 
-export type DepartmentMeta = {
+export type SubjectMeta = {
   name: string;
   slug: string;
   examCount: number;
@@ -75,7 +75,7 @@ export type DepartmentMeta = {
 export type Manifest = {
   schemaVersion: number;
   generatedAt: string;
-  departments: DepartmentMeta[];
+  subjects: SubjectMeta[];
   exams: ExamMeta[];
   stats: {
     examCount: number;
@@ -96,7 +96,7 @@ export type AttemptQuestionReview = {
 export type PersistedAttempt = {
   attemptId: string;
   examId: string;
-  departmentName: string;
+  subjectName: string;
   displayYear: number;
   variant: ExamVariant;
   mode: ExamMode;

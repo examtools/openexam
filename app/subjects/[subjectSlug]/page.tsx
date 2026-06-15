@@ -4,56 +4,56 @@ import { ExamCard } from "@/components/catalog/exam-card";
 import { LandingFooter } from "@/components/landing/landing-footer";
 import { StructuredData } from "@/components/seo/structured-data";
 import { PageHeader } from "@/components/ui/page-header";
-import { getDepartmentBySlug, getDepartments } from "@/lib/data/generated";
+import { getSubjectBySlug, getSubjects } from "@/lib/data/generated";
 import { absoluteUrl, buildPageMetadata } from "@/lib/seo/site";
 
 export const revalidate = 86400;
 
 export async function generateStaticParams() {
-  const departments = await getDepartments();
-  return departments.map((dept) => ({ departmentSlug: dept.slug }));
+  const subjects = await getSubjects();
+  return subjects.map((subj) => ({ subjectSlug: subj.slug }));
 }
 
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ departmentSlug: string }>;
+  params: Promise<{ subjectSlug: string }>;
 }): Promise<Metadata> {
-  const { departmentSlug } = await params;
-  const data = await getDepartmentBySlug(departmentSlug);
+  const { subjectSlug } = await params;
+  const data = await getSubjectBySlug(subjectSlug);
 
   if (!data) {
     return buildPageMetadata({
-      title: "Department not found",
+      title: "Subject not found",
       description: "The requested Ethiopian entrance exam subject page could not be found.",
-      path: `/departments/${departmentSlug}`,
+      path: `/subjects/${subjectSlug}`,
       noIndex: true,
     });
   }
 
-  const { department } = data;
+  const { subject } = data;
 
   return {
     ...buildPageMetadata({
-      title: `${department.name} Entrance Exam Practice`,
-      description: `Practice ${department.name} Ethiopian Grade 12 entrance exams with ${department.examCount} exam sets and ${department.totalPlayableQuestions} playable questions across ${department.years.join(", ")}.`,
-      path: `/departments/${department.slug}`,
+      title: `${subject.name} Entrance Exam Practice`,
+      description: `Practice ${subject.name} Ethiopian Grade 12 entrance exams with ${subject.examCount} exam sets and ${subject.totalPlayableQuestions} playable questions across ${subject.years.join(", ")}.`,
+      path: `/subjects/${subject.slug}`,
       keywords: [
-        `${department.name} entrance exam`,
-        `${department.name} entrance exam practice`,
-        `${department.name} Ethiopian entrance exam questions`,
+        `${subject.name} entrance exam`,
+        `${subject.name} entrance exam practice`,
+        `${subject.name} Ethiopian entrance exam questions`,
       ],
     }),
   };
 }
 
-export default async function DepartmentPage({
+export default async function SubjectPage({
   params,
 }: {
-  params: Promise<{ departmentSlug: string }>;
+  params: Promise<{ subjectSlug: string }>;
 }) {
-  const { departmentSlug } = await params;
-  const data = await getDepartmentBySlug(departmentSlug);
+  const { subjectSlug } = await params;
+  const data = await getSubjectBySlug(subjectSlug);
 
   if (!data) {
     return (
@@ -61,7 +61,7 @@ export default async function DepartmentPage({
         <main className="flex-1">
           <div className="mx-auto max-w-4xl px-6 py-16">
             <h1 className="text-2xl font-semibold text-brand-primaryDark">Subject not found</h1>
-            <Link href="/departments" className="mt-4 inline-flex text-sm text-brand-primary">
+            <Link href="/subjects" className="mt-4 inline-flex text-sm text-brand-primary">
               Back to subjects
             </Link>
           </div>
@@ -71,8 +71,8 @@ export default async function DepartmentPage({
     );
   }
 
-  const { department, exams } = data;
-  const pageUrl = absoluteUrl(`/departments/${department.slug}`);
+  const { subject, exams } = data;
+  const pageUrl = absoluteUrl(`/subjects/${subject.slug}`);
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -87,12 +87,12 @@ export default async function DepartmentPage({
         "@type": "ListItem",
         position: 2,
         name: "Subjects",
-        item: absoluteUrl("/departments"),
+        item: absoluteUrl("/subjects"),
       },
       {
         "@type": "ListItem",
         position: 3,
-        name: department.name,
+        name: subject.name,
         item: pageUrl,
       },
     ],
@@ -100,9 +100,9 @@ export default async function DepartmentPage({
   const collectionSchema = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    name: `${department.name} Ethiopian entrance exams`,
+    name: `${subject.name} Ethiopian entrance exams`,
     url: pageUrl,
-    description: `Browse ${department.name} entrance exam practice sets by year.`,
+    description: `Browse ${subject.name} entrance exam practice sets by year.`,
     mainEntity: {
       "@type": "ItemList",
       numberOfItems: exams.length,
@@ -118,13 +118,13 @@ export default async function DepartmentPage({
   return (
     <div className="page-bg min-h-screen flex flex-col">
       <main className="flex-1">
-        <StructuredData id={`dept-breadcrumb-${department.slug}`} data={breadcrumbSchema} />
-        <StructuredData id={`dept-collection-${department.slug}`} data={collectionSchema} />
+        <StructuredData id={`subj-breadcrumb-${subject.slug}`} data={breadcrumbSchema} />
+        <StructuredData id={`subj-collection-${subject.slug}`} data={collectionSchema} />
         <PageHeader
-          title={department.name}
+          title={subject.name}
           eyebrow="Subjects"
-          subtitle={`${department.examCount} exams · ${department.totalPlayableQuestions} playable questions`}
-          backHref="/departments"
+          subtitle={`${subject.examCount} exams · ${subject.totalPlayableQuestions} playable questions`}
+          backHref="/subjects"
           backLabel="All subjects"
         />
 

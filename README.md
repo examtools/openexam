@@ -10,7 +10,7 @@ A public, local-first practice platform for Ethiopian Grade 12 entrance exams.
 No authentication, accounts, or backend required — all progress is stored in
 the browser.
 
-> **Live site:** Coming soon
+> **Live site:** [entrance-practice.vercel.app](https://entrance-practice.vercel.app)
 
 ---
 
@@ -55,13 +55,13 @@ Opens at [http://localhost:3000](http://localhost:3000).
 ```
 ├── app/                      # Next.js App Router pages
 │   ├── (marketing)/          # Landing page
-│   ├── departments/          # Department listing + detail
+│   ├── subjects/             # Subject listing + detail
 │   ├── exam/[examId]/        # Exam engine
 │   ├── history/              # Attempt history
 │   └── layout.tsx            # Root layout (header, analytics)
 ├── components/
 │   ├── branding/             # SiteLogo
-│   ├── catalog/              # Department list, exam cards
+│   ├── catalog/              # Subject list, exam cards
 │   ├── exam/                 # Exam engine (client, review, timer, etc.)
 │   ├── history/              # History page
 │   ├── landing/              # Landing page (hero, feature sections, footer)
@@ -101,8 +101,8 @@ Opens at [http://localhost:3000](http://localhost:3000).
 | Route                               | Page              |
 |-------------------------------------|-------------------|
 | `/`                                 | Landing           |
-| `/departments`                      | Department list   |
-| `/departments/[departmentSlug]`     | Year + variant    |
+| `/subjects`                         | Subject list      |
+| `/subjects/[subjectSlug]`           | Year + variant    |
 | `/exam/[examId]`                    | Exam engine       |
 | `/history`                          | Attempt history   |
 
@@ -179,13 +179,13 @@ including JSX support, image handling, model exams, and multi-line questions.
 
 1. Edit or create `Questions/<Subject>/<year>.js`
 2. Run `npm run dev` — the pipeline processes it automatically
-3. Verify at `http://localhost:3000/departments/<slug>`
+3. Verify at `http://localhost:3000/subjects/<slug>`
 
-### New subject / department
+### New subject
 
-1. Create `Questions/<New Department>/<year>.js`
+1. Create `Questions/<New Subject>/<year>.js`
 2. Run `npm run dev`
-3. The department appears automatically on the `/departments` page
+3. The subject appears automatically on the `/subjects` page
 
 ### New model exam variant
 

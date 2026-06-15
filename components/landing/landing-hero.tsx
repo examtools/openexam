@@ -76,13 +76,13 @@ export function LandingHero() {
               transition={{ duration: 0.7, delay: 0.3 }}
             >
               <Button asChild variant="primary" className="gap-2 px-7 py-3.5 text-base shadow-lg shadow-brand-primary/25">
-                <Link href="/departments">
+                <Link href="/subjects">
                   Get Started
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </Button>
               <Button asChild variant="secondary" className="gap-2 px-7 py-3.5 text-base">
-                <Link href="/departments">
+                <Link href="/subjects">
                   <BookOpen className="h-4 w-4" />
                   Browse Exams
                 </Link>

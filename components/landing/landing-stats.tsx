@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { Building2, FileText, HelpCircle, BarChart3 } from "lucide-react";
 
 const statsData = [
-  { key: "departments", icon: Building2, suffix: "+" },
+  { key: "subjects", icon: Building2, suffix: "+" },
   { key: "exams", icon: FileText, suffix: "+" },
   { key: "questions", icon: HelpCircle, suffix: "+" },
   { key: "activeUsers", icon: BarChart3, suffix: "K+" },
@@ -17,7 +17,7 @@ function formatNumber(value: number) {
 
 type StatsBarProps = {
   stats: {
-    departmentCount: number;
+    subjectCount: number;
     examCount: number;
     playableQuestionCount: number;
   };
@@ -29,7 +29,7 @@ export function LandingStats({ stats }: StatsBarProps) {
   const [counters, setCounters] = useState<number[]>([0, 0, 0, 0]);
 
   const targets = [
-    stats.departmentCount,
+    stats.subjectCount,
     stats.examCount,
     stats.playableQuestionCount,
     Math.round(stats.playableQuestionCount / 100),
@@ -114,12 +114,12 @@ export function LandingStats({ stats }: StatsBarProps) {
                   {formatNumber(item.value)}{item.suffix}
                 </span>
                 <span className="mt-1 block text-sm font-medium text-brand-text">
-                  {item.key === "departments" ? "Subjects" :
+                  {item.key === "subjects" ? "Subjects" :
                    item.key === "exams" ? "Exams" :
                    item.key === "questions" ? "Questions" : "Active Users"}
                 </span>
                 <span className="mt-1 block text-xs text-brand-textTertiary">
-                  {item.key === "departments" ? "Across all subjects" :
+                  {item.key === "subjects" ? "Across all subjects" :
                    item.key === "exams" ? "Practice sets" :
                    item.key === "questions" ? "With answers" : "And growing"}
                 </span>

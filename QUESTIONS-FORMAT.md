@@ -14,20 +14,20 @@ modifying question data.
 
 ```
 Questions/
-  <Department Name>/
+  <Subject Name>/
     <year>.js
     <year>-model.js          (optional — model/variant exams)
 ```
 
 **Rules:**
-- `<Department Name>` is the human-readable name (e.g. `Biology`, `Scholastic Aptitude`).
+- `<Subject Name>` is the human-readable name (e.g. `Biology`, `Scholastic Aptitude`).
 - `<year>` is a 4-digit number (e.g. `2015`, `2016`).
 - Appending `-model` before `.js` marks the file as a model exam variant.
 - Files **must** have a `.js` extension.
 
-### Current Departments
+### Current Subjects
 
-| Department             | Years    |
+| Subject                | Years    |
 |------------------------|----------|
 | Biology                | 2015–2017 |
 | Chemistry              | 2015–2017 |
@@ -174,7 +174,7 @@ can be inspected, but they are filtered out during exam sessions.
 ## 6. Generated Output Format (for reference)
 
 After normalization, each file produces a JSON dataset at:
-`generated/exams/<departmentSlug>__<displayYear>__<variant>.json`
+`generated/exams/<subjectSlug>__<displayYear>__<variant>.json`
 
 When feeding context to an AI, you can show the raw format (Section 3) as the
 input target and the generated format below as supplementary context.
@@ -187,8 +187,8 @@ input target and the generated format below as supplementary context.
   "generatedAt": "2026-06-15T15:35:02.556Z",
   "meta": {
     "examId": "mathematics__2015__regular",
-    "departmentName": "Mathematics",
-    "departmentSlug": "mathematics",
+    "subjectName": "Mathematics",
+    "subjectSlug": "mathematics",
     "sourceYear": 2015,
     "displayYear": 2015,
     "variant": "regular",
@@ -226,18 +226,18 @@ input target and the generated format below as supplementary context.
 
 ## 7. Adding a New Subject / Scaling
 
-### Adding questions to an existing department
+### Adding questions to an existing subject
 
-1. Create or edit `Questions/<Department>/<year>.js`
+1. Create or edit `Questions/<Subject>/<year>.js`
 2. Run `npm run dev` or `npm run build` — normalization runs automatically
 3. Verify the generated dataset appears under `generated/exams/`
 
-### Adding a brand-new department
+### Adding a brand-new subject
 
-1. Create a new folder: `Questions/<New Department Name>/`
+1. Create a new folder: `Questions/<New Subject Name>/`
 2. Add one or more year files (e.g. `2015.js`)
-3. Run `npm run dev` — the department appears automatically in the manifest
-4. The new department appears on the `/departments` page
+3. Run `npm run dev` — the subject appears automatically in the manifest
+4. The new subject appears on the `/subjects` page
 
 ### Adding a model exam variant
 

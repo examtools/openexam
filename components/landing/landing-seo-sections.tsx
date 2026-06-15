@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import type { DepartmentMeta, Manifest } from "@/lib/exam/types";
+import type { Manifest } from "@/lib/exam/types";
 import { Pill } from "@/components/ui/pill";
 
 const faqItems = [

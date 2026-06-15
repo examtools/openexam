@@ -13,15 +13,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     lastModified,
   }));
 
-  const departmentEntries = (manifest?.departments ?? []).map((dept) => ({
-    url: `${baseUrl}/departments/${dept.slug}`,
+  const subjectEntries = (manifest?.subjects ?? []).map((subj) => ({
+    url: `${baseUrl}/subjects/${subj.slug}`,
     lastModified,
   }));
 
   return [
     { url: baseUrl, lastModified },
-    { url: `${baseUrl}/departments`, lastModified },
-    ...departmentEntries,
+    { url: `${baseUrl}/subjects`, lastModified },
+    ...subjectEntries,
     ...examEntries,
   ];
 }

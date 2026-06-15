@@ -3,7 +3,7 @@ import path from "node:path";
 import vm from "node:vm";
 
 import type {
-  DepartmentMeta,
+  SubjectMeta,
   ExamDataset,
   ExamMeta,
   ExamVariant,
@@ -35,12 +35,12 @@ function readQuestionFiles(): string[] {
 
   const files: string[] = [];
 
-  for (const department of fs.readdirSync(QUESTIONS_ROOT, { withFileTypes: true })) {
-    if (!department.isDirectory()) continue;
-    const deptPath = path.join(QUESTIONS_ROOT, department.name);
-    for (const entry of fs.readdirSync(deptPath)) {
+  for (const subject of fs.readdirSync(QUESTIONS_ROOT, { withFileTypes: true })) {
+    if (!subject.isDirectory()) continue;
+    const subjPath = path.join(QUESTIONS_ROOT, subject.name);
+    for (const entry of fs.readdirSync(subjPath)) {
       if (entry.endsWith(".js")) {
-        files.push(path.join(deptPath, entry));
+        files.push(path.join(subjPath, entry));
       }
     }
   }
@@ -245,14 +245,14 @@ function normalizeQuestion(item: Record<string, unknown>, index: number): Normal
 }
 
 function parseExamMeta(filePath: string): {
-  departmentName: string;
+  subjectName: string;
   sourceYear: number;
   displayYear: number;
   variant: ExamVariant;
   examId: string;
   label: string;
 } {
-  const departmentName = path.basename(path.dirname(filePath));
+  const subjectName = path.basename(path.dirname(filePath));
   const filename = path.basename(filePath, ".js");
   const match = filename.match(/^(\d{4})(-model)?$/);
 
@@ -263,11 +263,11 @@ function parseExamMeta(filePath: string): {
   const sourceYear = Number(match[1]);
   const variant: ExamVariant = match[2] ? "model" : "regular";
   const displayYear = sourceYear === 2116 ? 2016 : sourceYear;
-  const departmentSlug = slugify(departmentName);
-  const examId = `${departmentSlug}__${displayYear}__${variant}`;
+  const subjectSlug = slugify(subjectName);
+  const examId = `${subjectSlug}__${displayYear}__${variant}`;
   const label = variant === "model" ? `${displayYear} Model` : `${displayYear}`;
 
-  return { departmentName, sourceYear, displayYear, variant, examId, label };
+  return { subjectName, sourceYear, displayYear, variant, examId, label };
 }
 
 function ensureDir(dir: string) {
@@ -298,7 +298,7 @@ function main() {
   const files = readQuestionFiles();
   const exams: ExamMeta[] = [];
   const examIdSet = new Set<string>();
-  const departmentsMap = new Map<string, DepartmentMeta>();
+  const subjectsMap = new Map<string, SubjectMeta>();
 
   let unresolvedImages = 0;
   let totalQuestions = 0;
@@ -311,8 +311,8 @@ function main() {
       throw new Error(`Expected array in ${filePath}`);
     }
     const raw = rawValue as Record<string, unknown>[];
-    const { departmentName, sourceYear, displayYear, variant, examId, label } = parseExamMeta(filePath);
-    const departmentSlug = slugify(departmentName);
+    const { subjectName, sourceYear, displayYear, variant, examId, label } = parseExamMeta(filePath);
+    const subjectSlug = slugify(subjectName);
 
     const questions = raw.map((item, index) => normalizeQuestion(item, index));
 
@@ -335,8 +335,8 @@ function main() {
 
     const examMeta: ExamMeta = {
       examId,
-      departmentName,
-      departmentSlug,
+      subjectName,
+      subjectSlug,
       sourceYear,
       displayYear,
       variant,
@@ -358,20 +358,20 @@ function main() {
     fs.writeFileSync(path.join(EXAMS_DIR, `${examId}.json`), JSON.stringify(dataset, null, 2));
     exams.push(examMeta);
 
-    const department = departmentsMap.get(departmentSlug) ?? {
-      name: departmentName,
-      slug: departmentSlug,
+    const subject = subjectsMap.get(subjectSlug) ?? {
+      name: subjectName,
+      slug: subjectSlug,
       examCount: 0,
       totalQuestions: 0,
       totalPlayableQuestions: 0,
       years: [],
     };
 
-    department.examCount += 1;
-    department.totalQuestions += questions.length;
-    department.totalPlayableQuestions += playableQuestions.length;
-    if (!department.years.includes(displayYear)) department.years.push(displayYear);
-    departmentsMap.set(departmentSlug, department);
+    subject.examCount += 1;
+    subject.totalQuestions += questions.length;
+    subject.totalPlayableQuestions += playableQuestions.length;
+    if (!subject.years.includes(displayYear)) subject.years.push(displayYear);
+    subjectsMap.set(subjectSlug, subject);
 
     for (const question of questions) {
       const blocks = [
@@ -387,16 +387,16 @@ function main() {
     }
   }
 
-  const departments = Array.from(departmentsMap.values()).map((department) => ({
-    ...department,
-    years: department.years.sort((a, b) => b - a),
+  const subjects = Array.from(subjectsMap.values()).map((subject) => ({
+    ...subject,
+    years: subject.years.sort((a, b) => b - a),
   }));
 
   const manifest: Manifest = {
     schemaVersion,
     generatedAt: new Date().toISOString(),
-    departments: departments.sort((a, b) => a.name.localeCompare(b.name)),
-    exams: exams.sort((a, b) => a.departmentName.localeCompare(b.departmentName)),
+    subjects: subjects.sort((a, b) => a.name.localeCompare(b.name)),
+    exams: exams.sort((a, b) => a.subjectName.localeCompare(b.subjectName)),
     stats: {
       examCount: exams.length,
       questionCount: totalQuestions,

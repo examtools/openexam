@@ -81,7 +81,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <SiteLogo linked size="sm" />
             <nav className="hidden items-center gap-1 sm:flex">
               <Link
-                href="/departments"
+                href="/subjects"
                 className="rounded-lg px-4 py-2 text-sm font-medium text-brand-textSecondary transition-colors hover:bg-brand-surface hover:text-brand-text"
               >
                 Subjects
@@ -93,7 +93,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 History
               </Link>
               <Link
-                href="/departments"
+                href="/subjects"
                 className="ml-2 rounded-xl bg-gradient-to-br from-brand-primary to-brand-primaryDark px-5 py-2 text-sm font-semibold text-white shadow-lg shadow-brand-primary/25 transition-all hover:-translate-y-0.5 hover:shadow-xl"
               >
                 Get Started
