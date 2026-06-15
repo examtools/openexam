@@ -87,6 +87,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 Subjects
               </Link>
               <Link
+                href="/study"
+                className="rounded-lg px-4 py-2 text-sm font-medium text-brand-textSecondary transition-colors hover:bg-brand-surface hover:text-brand-text"
+              >
+                Study
+              </Link>
+              <Link
                 href="/history"
                 className="rounded-lg px-4 py-2 text-sm font-medium text-brand-textSecondary transition-colors hover:bg-brand-surface hover:text-brand-text"
               >

@@ -1,16 +1,29 @@
 "use client";
 
 import type { PersistedAttempt, PersistedSession } from "@/lib/exam/types";
-import type { StorageAny, StorageV2 } from "@/lib/storage/types";
+import type { CardReview, StudySession } from "@/lib/study/types";
+import type {
+  StorageAny,
+  StorageV2,
+  StorageV3,
+} from "@/lib/storage/types";
 import { STORAGE_KEY } from "@/lib/storage/types";
 
-const DEFAULT_STORAGE: StorageV2 = {
-  version: 2,
+const DEFAULT_STORAGE: StorageV3 = {
+  version: 3,
   sessions: {},
   history: [],
+  studySessions: {},
+  cardReviews: {},
   preferences: {
     defaultMode: "practice",
     timerPresets: [15, 30, 60, 90],
+    studyConfig: {
+      defaultCardCount: 50,
+      defaultResponseMode: "multiple-choice",
+      defaultStudyMode: "srs",
+      autoAdvance: false,
+    },
   },
 };
 
@@ -27,11 +40,19 @@ function safeParse(raw: string): StorageAny | null {
 }
 
 function migrateToV2(value: StorageAny): StorageV2 {
-  const sessions = value.sessions && typeof value.sessions === "object" ? value.sessions : {};
+  const sessions =
+    value.sessions && typeof value.sessions === "object"
+      ? value.sessions
+      : {};
   const history = Array.isArray(value.history) ? value.history : [];
-  const mode = value.preferences?.defaultMode === "test" ? "test" : "practice";
-  const timerPresets = Array.isArray(value.preferences?.timerPresets)
-    ? value.preferences?.timerPresets.filter((x): x is number => Number.isFinite(x) && x > 0)
+  const mode =
+    value.preferences?.defaultMode === "test" ? "test" : "practice";
+  const timerPresets = Array.isArray(
+    value.preferences?.timerPresets,
+  )
+    ? value.preferences?.timerPresets.filter(
+        (x: number): x is number => Number.isFinite(x) && x > 0,
+      )
     : DEFAULT_STORAGE.preferences.timerPresets;
 
   return {
@@ -40,12 +61,47 @@ function migrateToV2(value: StorageAny): StorageV2 {
     history: history as PersistedAttempt[],
     preferences: {
       defaultMode: mode,
-      timerPresets: timerPresets.length > 0 ? timerPresets : DEFAULT_STORAGE.preferences.timerPresets,
+      timerPresets:
+        timerPresets.length > 0
+          ? timerPresets
+          : DEFAULT_STORAGE.preferences.timerPresets,
     },
   };
 }
 
-export function loadStorage(): StorageV2 {
+function migrateToV3(value: StorageAny): StorageV3 {
+  if (value.version === 3) {
+    return {
+      ...DEFAULT_STORAGE,
+      ...value,
+      preferences: {
+        ...DEFAULT_STORAGE.preferences,
+        ...(value.preferences ?? {}),
+        studyConfig: {
+          ...DEFAULT_STORAGE.preferences.studyConfig,
+          ...(value.preferences?.studyConfig ?? {}),
+        },
+      },
+    };
+  }
+
+  const v2 = migrateToV2(value);
+
+  return {
+    version: 3,
+    sessions: v2.sessions,
+    history: v2.history,
+    studySessions: {},
+    cardReviews: {},
+    preferences: {
+      defaultMode: v2.preferences.defaultMode,
+      timerPresets: v2.preferences.timerPresets,
+      studyConfig: { ...DEFAULT_STORAGE.preferences.studyConfig },
+    },
+  };
+}
+
+export function loadStorage(): StorageV3 {
   if (!isBrowser()) {
     return DEFAULT_STORAGE;
   }
@@ -57,27 +113,31 @@ export function loadStorage(): StorageV2 {
 
   const parsed = safeParse(raw);
   if (!parsed) {
-    localStorage.setItem(`practice-exit-exam:storage:corrupt:${Date.now()}`, raw);
+    localStorage.setItem(
+      `practice-exit-exam:storage:corrupt:${Date.now()}`,
+      raw,
+    );
     localStorage.removeItem(STORAGE_KEY);
     return DEFAULT_STORAGE;
   }
 
   try {
-    if (parsed.version === 2) {
-      return migrateToV2(parsed);
+    const migrated = migrateToV3(parsed);
+    if (migrated.version !== parsed.version) {
+      persistStorage(migrated);
     }
-
-    const migrated = migrateToV2(parsed);
-    persistStorage(migrated);
     return migrated;
   } catch {
-    localStorage.setItem(`practice-exit-exam:storage:corrupt:${Date.now()}`, raw);
+    localStorage.setItem(
+      `practice-exit-exam:storage:corrupt:${Date.now()}`,
+      raw,
+    );
     localStorage.removeItem(STORAGE_KEY);
     return DEFAULT_STORAGE;
   }
 }
 
-export function persistStorage(value: StorageV2): void {
+export function persistStorage(value: StorageV3): void {
   if (!isBrowser()) {
     return;
   }
@@ -85,11 +145,17 @@ export function persistStorage(value: StorageV2): void {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(value));
 }
 
-export function getSessionKey(examId: string, mode: "practice" | "test") {
+export function getSessionKey(
+  examId: string,
+  mode: "practice" | "test",
+) {
   return `${examId}::${mode}`;
 }
 
-export function saveSession(sessionKey: string, session: PersistedSession): void {
+export function saveSession(
+  sessionKey: string,
+  session: PersistedSession,
+): void {
   const storage = loadStorage();
   storage.sessions[sessionKey] = session;
   persistStorage(storage);
@@ -101,7 +167,9 @@ export function deleteSession(sessionKey: string): void {
   persistStorage(storage);
 }
 
-export function readSession(sessionKey: string): PersistedSession | null {
+export function readSession(
+  sessionKey: string,
+): PersistedSession | null {
   const storage = loadStorage();
   return storage.sessions[sessionKey] ?? null;
 }
@@ -116,7 +184,9 @@ export function readHistory(): PersistedAttempt[] {
   return loadStorage().history;
 }
 
-export function readAttemptById(attemptId: string): PersistedAttempt | null {
+export function readAttemptById(
+  attemptId: string,
+): PersistedAttempt | null {
   const history = readHistory();
   return history.find((entry) => entry.attemptId === attemptId) ?? null;
 }
