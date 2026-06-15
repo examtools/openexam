@@ -62,7 +62,7 @@ export function Header() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2, ease: "easeInOut" }}
-            className="overflow-hidden border-b border-brand-border bg-brand-bg sm:hidden"
+            className="overflow-hidden bg-brand-bg sm:hidden"
           >
             <div className="mx-auto max-w-6xl space-y-1 px-5 pb-6 pt-2">
               {navLinks.map((link) => (
