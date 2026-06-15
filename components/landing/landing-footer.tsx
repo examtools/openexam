@@ -181,7 +181,7 @@ export function LandingFooter() {
       <div className="border-t border-brand-border">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-2 px-5 py-6 text-center sm:flex-row sm:text-left">
           <p className="text-xs text-brand-textTertiary">
-            &copy; {new Date().getFullYear()} PharmaNet by Alyah Technologies. All rights reserved.
+            &copy; {new Date().getFullYear()} Alyah Technologies. All rights reserved.
           </p>
           <p className="text-xs text-brand-textTertiary/60">
             Building digital excellence since 2020
