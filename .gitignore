@@ -1,0 +1,33 @@
+# dependencies
+/node_modules
+
+# next
+/.next
+/out
+
+# generated data
+/generated/**/*.json
+/generated/reports/*.json
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# env
+.env*
+!.env.example
+
+# tests
+/playwright-report
+/test-results
+
+# misc
+.DS_Store
+.vercel
+
+Questions/
+
+
+
