@@ -42,10 +42,8 @@ export function Header() {
           </Link>
         </nav>
 
-        <div className="flex items-center gap-2 sm:gap-0">
-          <div className="hidden sm:block">
-            <ThemeToggle />
-          </div>
+        <div className="flex items-center gap-2">
+          <ThemeToggle />
           <button
             type="button"
             className="flex h-9 w-9 items-center justify-center rounded-lg border border-brand-border text-brand-textSecondary transition-all hover:border-brand-borderHover hover:text-brand-text sm:hidden"
@@ -84,10 +82,6 @@ export function Header() {
               >
                 Get Started
               </Link>
-              <div className="mt-4 flex items-center gap-3 px-4 py-2">
-                <span className="text-sm text-brand-textSecondary">Theme</span>
-                <ThemeToggle />
-              </div>
             </div>
           </motion.div>
         )}
