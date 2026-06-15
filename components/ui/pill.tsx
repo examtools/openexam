@@ -8,5 +8,5 @@ type PillProps = {
 };
 
 export function Pill({ children, className }: PillProps) {
-  return <span className={cn("badge border-black/15 bg-white", className)}>{children}</span>;
+  return <span className={cn("badge border-brand-border bg-brand-bg", className)}>{children}</span>;
 }

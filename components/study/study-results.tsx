@@ -22,7 +22,7 @@ const ratingMeta: Record<
   hard: {
     label: "Hard",
     icon: AlertTriangle,
-    color: "text-amber-600",
+    color: "text-brand-warning",
   },
   forgot: {
     label: "Forgot",

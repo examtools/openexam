@@ -56,21 +56,21 @@ export function ModeSelectScreen({
                 "rounded-xl border-2 p-4 text-left transition",
                 mode === "practice"
                   ? "border-brand-primary bg-brand-primary/5"
-                  : "border-black/10 hover:border-black/20"
+                  : "border-brand-border hover:border-brand-borderHover"
               )}
             >
               <div className="flex items-center gap-2">
                 <div
                   className={cn(
                     "w-4 h-4 rounded-full border-2 flex items-center justify-center",
-                    mode === "practice" ? "border-brand-primary" : "border-black/20"
+                    mode === "practice" ? "border-brand-primary" : "border-brand-border"
                   )}
                 >
                   {mode === "practice" && <div className="w-2 h-2 rounded-full bg-brand-primary" />}
                 </div>
                 <span className="font-semibold text-brand-primaryDark">Practice</span>
               </div>
-              <p className="mt-2 text-xs text-black/60">
+              <p className="mt-2 text-xs text-brand-textSecondary">
                 Instant feedback after each question. Learn as you go.
               </p>
             </button>
@@ -84,21 +84,21 @@ export function ModeSelectScreen({
                 "rounded-xl border-2 p-4 text-left transition",
                 mode === "test"
                   ? "border-brand-primary bg-brand-primary/5"
-                  : "border-black/10 hover:border-black/20"
+                  : "border-brand-border hover:border-brand-borderHover"
               )}
             >
               <div className="flex items-center gap-2">
                 <div
                   className={cn(
                     "w-4 h-4 rounded-full border-2 flex items-center justify-center",
-                    mode === "test" ? "border-brand-primary" : "border-black/20"
+                    mode === "test" ? "border-brand-primary" : "border-brand-border"
                   )}
                 >
                   {mode === "test" && <div className="w-2 h-2 rounded-full bg-brand-primary" />}
                 </div>
                 <span className="font-semibold text-brand-primaryDark">Test</span>
               </div>
-              <p className="mt-2 text-xs text-black/60">
+              <p className="mt-2 text-xs text-brand-textSecondary">
                 Take under exam conditions. Results at the end.
               </p>
             </button>
@@ -113,7 +113,7 @@ export function ModeSelectScreen({
                 type="checkbox"
                 checked={timerEnabled}
                 onChange={(e) => setTimerEnabled(e.target.checked)}
-                className="w-4 h-4 rounded border-black/20 text-brand-primary focus:ring-brand-primary"
+                className="w-4 h-4 rounded border-brand-border text-brand-primary focus:ring-brand-primary"
               />
               <span className="text-sm text-brand-primaryDark">Enable timer</span>
             </label>
@@ -129,7 +129,7 @@ export function ModeSelectScreen({
                       "rounded-lg border p-3 text-center transition",
                       timerDuration === option.value
                         ? "border-brand-primary bg-brand-primary text-white"
-                        : "border-black/10 hover:border-black/20",
+                        : "border-brand-border hover:border-brand-borderHover",
                       option.value === 0 && "opacity-50 cursor-not-allowed"
                     )}
                   >
@@ -145,7 +145,7 @@ export function ModeSelectScreen({
         {mode === "practice" && (
           <div>
             <h2 className="text-sm font-semibold text-brand-primaryDark mb-3">Practice Options</h2>
-            <div className="space-y-2 text-xs text-black/60">
+            <div className="space-y-2 text-xs text-brand-textSecondary">
               <p>• Get instant feedback after each answer</p>
               <p>• View explanations for correct answers</p>
               <p>• Take as long as you need</p>
@@ -157,7 +157,7 @@ export function ModeSelectScreen({
         {mode === "test" && timerEnabled && (
           <div className="rounded-lg bg-brand-accent/20 p-4">
             <h3 className="font-semibold text-sm text-brand-primaryDark">Test Mode Rules</h3>
-            <ul className="mt-2 space-y-1 text-xs text-black/70">
+            <ul className="mt-2 space-y-1 text-xs text-brand-textSecondary">
               <li>• {questionCount} questions to answer</li>
               <li>• Time limit: {formatDuration(timerDuration)}</li>
               <li>• Results shown after submission</li>

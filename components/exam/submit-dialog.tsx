@@ -55,19 +55,19 @@ export function SubmitDialog({
         </div>
 
         <div className="mt-4 space-y-3">
-          <div className="rounded-lg bg-black/5 p-4">
+          <div className="rounded-lg bg-brand-surface p-4">
             <div className="grid grid-cols-3 gap-4 text-center">
               <div>
                 <div className="text-2xl font-bold text-brand-success">{answeredCount}</div>
-                <div className="text-xs text-black/60">Answered</div>
+                <div className="text-xs text-brand-textSecondary">Answered</div>
               </div>
               <div>
                 <div className="text-2xl font-bold text-brand-error">{unanswered}</div>
-                <div className="text-xs text-black/60">Unanswered</div>
+                <div className="text-xs text-brand-textSecondary">Unanswered</div>
               </div>
               <div>
                 <div className="text-2xl font-bold text-brand-accent">{flaggedCount}</div>
-                <div className="text-xs text-black/60">Flagged</div>
+                <div className="text-xs text-brand-textSecondary">Flagged</div>
               </div>
             </div>
           </div>
@@ -77,13 +77,13 @@ export function SubmitDialog({
               <p className="text-sm text-brand-error">
                 <strong>{unanswered} question{unanswered !== 1 ? "s" : ""} unanswered</strong>
               </p>
-              <p className="text-xs text-black/60 mt-1">
+              <p className="text-xs text-brand-textSecondary mt-1">
                 Unanswered questions will be marked as incorrect.
               </p>
             </div>
           )}
 
-          <p className="text-sm text-black/60 text-center">
+          <p className="text-sm text-brand-textSecondary text-center">
             Are you sure you want to submit? You cannot change your answers after submission.
           </p>
         </div>
@@ -92,7 +92,7 @@ export function SubmitDialog({
           <button
             type="button"
             onClick={onCancel}
-            className="flex-1 rounded-xl border border-black/10 py-2.5 text-sm font-semibold text-brand-primaryDark transition hover:bg-black/5"
+            className="flex-1 rounded-xl border border-brand-border py-2.5 text-sm font-semibold text-brand-primaryDark transition hover:bg-brand-surface"
           >
             Go Back
           </button>

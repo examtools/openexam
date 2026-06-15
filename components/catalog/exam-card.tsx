@@ -8,7 +8,7 @@ export function ExamCard({ exam }: { exam: ExamMeta }) {
   return (
     <Link
       href={`/exam/${exam.examId}`}
-      className="group block rounded-3xl border border-black/10 bg-white/70 p-6 transition hover:border-brand-primary/30 hover:bg-white"
+      className="group block rounded-3xl border border-brand-border bg-brand-bg/70 p-6 transition hover:border-brand-primary/30 hover:bg-brand-surface"
     >
       <div className="flex items-start justify-between gap-4">
         <div>
@@ -16,7 +16,7 @@ export function ExamCard({ exam }: { exam: ExamMeta }) {
           <h3 className="mt-2 text-2xl font-semibold text-brand-primaryDark group-hover:text-brand-primary">
             {exam.label}
           </h3>
-          <p className="mt-2 text-sm text-black/60">
+          <p className="mt-2 text-sm text-brand-textSecondary">
             {exam.playableQuestionCount} questions · {exam.invalidQuestionCount} skipped
           </p>
         </div>

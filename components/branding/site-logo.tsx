@@ -42,7 +42,7 @@ function SiteLogoInner({
     <div className={cn("inline-flex items-center gap-3", className)}>
       <div
         className={cn(
-          "relative overflow-hidden rounded-2xl border border-brand-primary/15 bg-white/80 shadow-[0_12px_32px_-18px_rgba(78,47,32,0.55)]",
+          "relative overflow-hidden rounded-2xl border border-brand-primary/15 bg-brand-bg/80 shadow-[0_12px_32px_-18px_rgba(78,47,32,0.55)]",
           config.wrapper,
           imageClassName,
         )}

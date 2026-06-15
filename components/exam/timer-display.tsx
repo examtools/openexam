@@ -40,7 +40,7 @@ export function TimerDisplay({
   const getTimerColor = () => {
     if (percentage > 50) return "bg-brand-success";
     if (percentage > 25) return "bg-brand-accent";
-    if (percentage > 10) return "bg-orange-500";
+    if (percentage > 10) return "bg-brand-warning";
     return "bg-brand-error";
   };
 
@@ -50,12 +50,12 @@ export function TimerDisplay({
   return (
     <div className="space-y-2">
       <div className="flex items-center justify-between text-sm">
-        <span className="text-black/60">Time Remaining</span>
+        <span className="text-brand-textSecondary">Time Remaining</span>
         <span
           className={cn(
             "font-mono font-semibold",
             isVeryLowTime && "text-brand-error animate-pulse",
-            isLowTime && !isVeryLowTime && "text-orange-500",
+            isLowTime && !isVeryLowTime && "text-brand-warning",
             percentage > 50 && "text-brand-success"
           )}
         >
@@ -63,7 +63,7 @@ export function TimerDisplay({
         </span>
       </div>
 
-      <div className="relative h-2 w-full overflow-hidden rounded-full bg-black/10">
+      <div className="relative h-2 w-full overflow-hidden rounded-full bg-brand-surface">
         <div
           className={cn(
             "absolute left-0 top-0 h-full rounded-full transition-all duration-500",
@@ -82,7 +82,7 @@ export function TimerDisplay({
       </div>
 
       {isPaused && (
-        <p className="text-xs text-black/50 text-center">Timer paused</p>
+        <p className="text-xs text-brand-textTertiary text-center">Timer paused</p>
       )}
     </div>
   );
@@ -94,7 +94,7 @@ interface ElapsedTimerProps {
 
 export function ElapsedTimer({ elapsedSec }: ElapsedTimerProps) {
   return (
-    <div className="flex items-center gap-2 text-sm text-black/60">
+    <div className="flex items-center gap-2 text-sm text-brand-textSecondary">
       <Clock3 className="h-4 w-4" aria-hidden="true" />
       <span>Elapsed: {formatDuration(elapsedSec)}</span>
     </div>

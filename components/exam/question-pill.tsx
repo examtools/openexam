@@ -22,7 +22,7 @@ export function QuestionPill({
       className={cn(
         "relative flex h-10 w-10 items-center justify-center rounded-full border text-xs font-semibold transition",
         active ? "border-brand-accent bg-brand-accent/70 text-brand-primaryDark" : "border-black/10",
-        answered && !active ? "bg-brand-success/10 text-brand-success" : "bg-white",
+        answered && !active ? "bg-brand-success/10 text-brand-success" : "bg-brand-bg",
         flagged ? "ring-2 ring-brand-error/40" : ""
       )}
     >

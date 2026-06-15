@@ -28,7 +28,7 @@ const ratings: {
     label: "Hard",
     icon: AlertTriangle,
     color:
-      "border-amber-500 bg-amber-500/10 text-amber-600 hover:bg-amber-500/20",
+      "border-brand-warning bg-brand-warning/10 text-brand-warning hover:bg-brand-warning/20",
   },
   {
     value: "forgot",

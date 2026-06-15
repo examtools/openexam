@@ -13,8 +13,8 @@ export function ReviewPanel({ attempt, questions }: { attempt: PersistedAttempt;
           if (!review) return null;
 
           return (
-            <div key={question.questionKey} className="rounded-xl border border-black/10 p-4">
-              <p className="text-xs text-black/60">Question {idx + 1}</p>
+            <div key={question.questionKey} className="rounded-xl border border-brand-border p-4">
+              <p className="text-xs text-brand-textSecondary">Question {idx + 1}</p>
               <div className="mt-2">
                 <RichContent blocks={question.question} />
               </div>
@@ -26,7 +26,7 @@ export function ReviewPanel({ attempt, questions }: { attempt: PersistedAttempt;
                     ? "bg-brand-success/10 border-brand-success"
                     : isSelected
                     ? "bg-brand-error/10 border-brand-error"
-                    : "border-black/10";
+                    : "border-brand-border";
 
                   return (
                     <div key={option.key} className={`rounded-lg border px-3 py-2 text-sm ${bg}`}>

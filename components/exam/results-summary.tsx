@@ -34,28 +34,28 @@ export function ResultsSummary({ attempt, passThreshold, onRetry, onReview }: Re
         <h2 className="text-2xl font-bold text-brand-primaryDark">
           {isPass ? "Congratulations!" : "Keep Practicing!"}
         </h2>
-        <p className="mt-2 text-black/60">
+        <p className="mt-2 text-brand-textSecondary">
           {isPass
             ? "You passed the exam!"
             : `You need ${passThreshold}% to pass. Keep practicing!`}
         </p>
 
         <div className="mt-6 grid grid-cols-2 gap-4">
-          <div className="rounded-xl bg-black/5 p-4">
+          <div className="rounded-xl bg-brand-surface p-4">
             <div className="text-3xl font-bold text-brand-primaryDark">
               {attempt.percent}%
             </div>
-            <div className="text-xs text-black/60">Score</div>
+            <div className="text-xs text-brand-textSecondary">Score</div>
           </div>
-          <div className="rounded-xl bg-black/5 p-4">
+          <div className="rounded-xl bg-brand-surface p-4">
             <div className="text-3xl font-bold text-brand-primaryDark">
               {attempt.correctCount}/{attempt.totalQuestions}
             </div>
-            <div className="text-xs text-black/60">Correct</div>
+            <div className="text-xs text-brand-textSecondary">Correct</div>
           </div>
         </div>
 
-        <div className="mt-4 flex items-center justify-center gap-6 text-sm text-black/60">
+        <div className="mt-4 flex items-center justify-center gap-6 text-sm text-brand-textSecondary">
           <div className="flex items-center gap-2">
             <Clock3 className="h-4 w-4" aria-hidden="true" />
             {formatDuration(attempt.durationSec)}
@@ -74,7 +74,7 @@ export function ResultsSummary({ attempt, passThreshold, onRetry, onReview }: Re
       <div className="flex gap-3">
         <button
           onClick={onReview}
-          className="flex-1 rounded-xl border border-black/10 py-3 text-sm font-semibold text-brand-primaryDark transition hover:bg-black/5"
+          className="flex-1 rounded-xl border border-brand-border py-3 text-sm font-semibold text-brand-primaryDark transition hover:bg-brand-surface"
         >
           Review Answers
         </button>
