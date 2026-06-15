@@ -111,11 +111,7 @@ export function StudyClient({
   function handleSelect(index: number) {
     if (!currentCard || cs?.revealed) return;
     const key = currentCard.globalKey;
-    const prev = cardStates[key]?.selected ?? [];
-    const next = prev.includes(index)
-      ? prev.filter((i) => i !== index)
-      : [...prev, index];
-    updateCardState(key, { selected: next });
+    updateCardState(key, { selected: [index], revealed: true });
   }
 
   function handleReveal() {

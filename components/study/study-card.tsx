@@ -78,14 +78,6 @@ export function StudyCard({
             Next Card
           </button>
         </div>
-      ) : actualMode === "multiple-choice" && selected.length > 0 ? (
-        <button
-          type="button"
-          onClick={onReveal}
-          className="w-full rounded-xl bg-brand-primary px-6 py-3 text-sm font-semibold text-white transition hover:bg-brand-primaryDark"
-        >
-          Check Answer
-        </button>
       ) : null}
     </div>
   );
