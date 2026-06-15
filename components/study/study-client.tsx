@@ -198,7 +198,7 @@ export function StudyClient({
   }
 
   return (
-    <div className="mx-auto max-w-2xl py-6">
+    <div className="mx-auto max-w-2xl py-6 pt-20">
       <div className="mb-6">
         <div className="flex items-center justify-between text-sm">
           <span className="text-brand-textSecondary">

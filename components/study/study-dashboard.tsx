@@ -28,7 +28,7 @@ export function StudyDashboard() {
       : 0;
 
   return (
-    <div className="mx-auto max-w-4xl px-5 py-8 sm:px-6">
+    <div className="mx-auto max-w-4xl px-5 py-8 pt-20 sm:px-6">
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold text-brand-text">Dashboard</h1>
