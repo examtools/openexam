@@ -277,6 +277,18 @@ export function DocsContent() {
             </div>
             <div className="space-y-4 text-sm leading-relaxed text-brand-textSecondary">
               <h3 className="text-base font-semibold text-brand-text">Vercel (Recommended)</h3>
+              <p>
+                The live site is deployed at{" "}
+                <a
+                  href="https://examtools.github.io/openexam/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-medium text-brand-primary underline underline-offset-2 transition hover:text-brand-primaryDark"
+                >
+                  examtools.github.io/openexam
+                </a>
+                .
+              </p>
               <ol className="list-decimal space-y-2 pl-5">
                 <li>Push your repository to GitHub</li>
                 <li>Import the project into Vercel</li>

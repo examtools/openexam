@@ -61,9 +61,14 @@ export function OpenSourceFooter() {
           <p className="text-xs text-brand-textTertiary">
             Open source · MIT License
           </p>
-          <p className="text-xs text-brand-textTertiary/60">
-            Built with ❤️ for the community
-          </p>
+          <a
+            href="https://examtools.github.io/openexam/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-xs text-brand-textTertiary/60 transition-colors hover:text-brand-textTertiary"
+          >
+            Built with ExamTools
+          </a>
         </div>
       </div>
     </footer>
