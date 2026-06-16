@@ -72,13 +72,16 @@ Opens at [http://localhost:3000](http://localhost:3000).
 │   ├── exam/                 # Types, scoring, ID generation
 │   ├── storage/              # localStorage persistence
 │   └── utils/                # Slug helpers
-├── Questions/                # RAW SOURCE FILES (see format below)
-│   ├── Biology/
-│   ├── Chemistry/
-│   ├── English/
-│   ├── Mathematics/
-│   ├── Physics/
-│   └── Scholastic Aptitude/
+├── Questions/                # Add any subject here
+│   ├── Subject A/             # e.g., Biology, Mathematics, Physics
+│   │   ├── 2020.js            # { year, questions: [...] }
+│   │   ├── 2021.js
+│   │   └── ...
+│   ├── Subject B/             # Any subject — no limit
+│   │   ├── 2020.js
+│   │   ├── 2021.js
+│   │   └── ...
+│   └── ...                     # Drop in a folder + .js files, done
 ├── generated/                # AUTO-GENERATED (do not edit manually)
 │   ├── manifest.json
 │   ├── exams/*.json
