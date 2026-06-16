@@ -62,7 +62,7 @@ export function OpenSourceFooter() {
             Open source · MIT License
           </p>
           <a
-            href="https://examtools.github.io/openexam/"
+            href="https://github.com/examtools/openexams"
             target="_blank"
             rel="noopener noreferrer"
             className="text-xs text-brand-textTertiary/60 transition-colors hover:text-brand-textTertiary"
