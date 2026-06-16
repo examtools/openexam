@@ -32,7 +32,7 @@ const config: Config = {
         },
       },
       boxShadow: {
-        glow: "0 20px 70px -20px rgba(29, 97, 231, 0.45)",
+        glow: "0 20px 70px -20px rgba(0, 0, 0, 0.3)",
       },
       keyframes: {
         float: {
