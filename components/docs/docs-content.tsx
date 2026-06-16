@@ -69,7 +69,7 @@ export function DocsContent() {
 
               <h3 className="pt-4 text-base font-semibold text-brand-text">Clone the Repository</h3>
               <div className="overflow-x-auto rounded-xl border border-brand-border bg-brand-surface p-4 font-mono text-sm">
-                <pre className="text-brand-text">git clone https://github.com/examtools/openexam.git</pre>
+                <pre className="text-brand-text">git clone https://github.com/examtools/openexams.git</pre>
                 <pre className="mt-1 text-brand-text">cd openexam</pre>
               </div>
 
@@ -321,7 +321,7 @@ export function DocsContent() {
                   Found a bug or want to add a feature? Open an issue or submit
                   a pull request on{" "}
                   <a
-                    href="https://github.com/examtools/openexam"
+                    href="https://github.com/examtools/openexams"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1 font-medium text-brand-primary underline underline-offset-2 hover:text-brand-primaryDark"

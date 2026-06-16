@@ -1,16 +1,16 @@
 <p align="center">
-  <img src="public/images/sponsor.png" alt="Entrance Exam Practice" height="140" />
+  <img src="public/icon.png" alt="Open Exam Practice" height="140" />
 </p>
 
 <br/>
 
-# Entrance Exam Practice Platform
+# Open Exam Practice
 
-A public, local-first practice platform for Ethiopian Grade 12 entrance exams.
-No authentication, accounts, or backend required — all progress is stored in
-the browser.
+A public, local-first practice platform for any exam. No authentication,
+accounts, or backend required — all progress is stored in the browser.
 
-> **Live site:** [entrance-practice.vercel.app](https://entrance-practice.vercel.app)
+> **Live site:** [openexams.vercel.app](https://openexams.vercel.app)
+> **Source:** [github.com/examtools/openexams](https://github.com/examtools/openexams)
 
 ---
 
