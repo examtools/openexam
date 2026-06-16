@@ -1,26 +1,24 @@
 import type { Metadata } from "next";
 
 export const siteConfig = {
-  name: "Entrance Exam Practice",
-  shortName: "Entrance Practice",
+  name: "Open Exam Practice",
+  shortName: "OpenExam",
   url: "https://practice.bilsul.com",
   description:
-    "Practice Ethiopian Grade 12 entrance exams with past questions, instant feedback, and realistic test mode.",
-  locale: "en_ET",
+    "An open-source, community-driven exam practice tool. Study any subject, contribute questions, and practice for any exam.",
+  locale: "en_US",
   keywords: [
-    "ethiopian entrance exam",
-    "ethiopian grade 12 entrance exam practice",
-    "entrance exam practice ethiopia",
-    "ethiopian university entrance exam",
-    "entrance exam past papers ethiopia",
-    "ethiopian entrance exam questions",
-    "ethiopian grade 12 entrance exam study app",
-    "grade 12 entrance exams ethiopia",
-    "ethiopian grade 12 students",
-    "entrance exam",
-    "euee",
-    "ethiopian education",
-    "ethiopian students",
+    "open source exam practice",
+    "exam practice tool",
+    "study for any exam",
+    "community driven questions",
+    "free exam practice",
+    "open study tool",
+    "practice questions",
+    "test preparation",
+    "exam preparation",
+    "study tool",
+    "open source education",
   ],
 } as const;
 

@@ -23,7 +23,7 @@ export function SubjectList({ subjects }: { subjects: SubjectMeta[] }) {
       <main className="flex-1">
         <PageHeader
           title="Subjects"
-          eyebrow="Entrance Exam Practice"
+          eyebrow="Open Exam Practice"
           subtitle="Choose your subject and explore past exam sets. Clean, fast, and 100% free."
           backHref="/"
           backLabel="Home"

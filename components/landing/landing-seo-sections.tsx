@@ -5,24 +5,24 @@ import { Pill } from "@/components/ui/pill";
 
 const faqItems = [
   {
-    question: "Is this Ethiopian entrance exam practice platform free?",
+    question: "Is this exam practice tool free?",
     answer:
-      "Yes. Students can browse subjects, open past entrance exams, and practice without creating an account.",
+      "Yes. It is completely free and open source. Anyone can browse subjects, open exams, and practice without creating an account.",
   },
   {
-    question: "Which subjects are included?",
+    question: "What subjects are available?",
     answer:
-      "The platform covers Grade 12 entrance exam subjects including English, Mathematics, Biology, Chemistry, Physics, and Scholastic Aptitude.",
+      "The tool supports any subject. The community can contribute questions for any field of study through pull requests.",
   },
   {
-    question: "Can I practice by year and exam type?",
+    question: "Can I contribute my own questions?",
     answer:
-      "Yes. Each subject page groups available entrance exams by year for easy browsing.",
+      "Absolutely! This is an open-source project. You can add questions for any subject or exam by following the documentation and submitting a pull request.",
   },
   {
-    question: "Does the site work for revision and mock testing?",
+    question: "Does the site work for different exam modes?",
     answer:
-      "Yes. Students can use practice mode for immediate feedback or test mode for a more exam-like session.",
+      "Yes. Use practice mode for immediate feedback or test mode for a timed, exam-like session. Your progress is saved locally.",
   },
 ];
 

@@ -7,6 +7,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { SiteJsonLd } from "@/components/seo/site-jsonld";
 import { absoluteUrl, siteConfig } from "@/lib/seo/site";
 import { Header } from "@/components/layout/header";
+import { OpenSourceFooter } from "@/components/layout/open-source-footer";
 import Script from "next/script";
 
 const fraunces = Fraunces({
@@ -76,6 +77,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="page-shell relative">
         <Header />
         <main className="flex-1">{children}</main>
+        <OpenSourceFooter />
         <SiteJsonLd />
         <Analytics />
         <SpeedInsights />

@@ -13,6 +13,7 @@ const BANNER_KEY = "donation-banner-dismissed";
 const navLinks = [
   { href: "/subjects", label: "Subjects" },
   { href: "/study", label: "Study" },
+  { href: "/docs", label: "Docs" },
   { href: "/history", label: "History" },
 ];
 

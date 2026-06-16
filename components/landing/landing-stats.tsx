@@ -88,7 +88,7 @@ export function LandingStats({ stats }: StatsBarProps) {
           transition={{ duration: 0.6 }}
         >
           <span className="inline-flex items-center gap-2 rounded-full bg-brand-primary/8 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-brand-primary">
-            Platform Stats
+            Tool Stats
           </span>
         </motion.div>
 

@@ -6,6 +6,7 @@ import { Plus, BookOpen, Clock, BarChart3 } from "lucide-react";
 import type { StudySession } from "@/lib/study/types";
 import { listStudySessions, getDueCardCount } from "@/lib/storage/study-store";
 import { loadStudyConfig } from "@/lib/study/config";
+import { PageHeader } from "@/components/ui/page-header";
 
 export function StudyHome() {
   const [sessions, setSessions] = useState<StudySession[]>([]);
@@ -21,22 +22,16 @@ export function StudyHome() {
   const completedSessions = sessions.filter((s) => s.status === "completed");
 
   return (
-    <div className="mx-auto max-w-4xl px-5 py-8 pt-20 sm:px-6">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-bold text-brand-text">Study Center</h1>
-          <p className="mt-1 text-sm text-brand-textSecondary">
-            Spaced repetition study sessions
-          </p>
-        </div>
-        <Link
-          href="/study/new"
-          className="flex items-center gap-2 rounded-xl bg-brand-primary px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-primaryDark"
-        >
-          <Plus className="h-4 w-4" />
-          New Study
-        </Link>
-      </div>
+    <div className="page-bg min-h-screen flex flex-col">
+      <main className="flex-1">
+        <PageHeader
+          title="Study"
+          eyebrow="Open Exam Practice"
+          subtitle="Spaced repetition study sessions to reinforce your knowledge."
+          backHref="/"
+          backLabel="Home"
+        />
+        <section className="page-section mx-auto max-w-4xl px-5 py-8 sm:px-6">
 
       {dueCount > 0 && (
         <div className="mt-6 rounded-xl border border-brand-primary/30 bg-brand-primary/5 p-4">
@@ -151,6 +146,8 @@ export function StudyHome() {
           </p>
         </div>
       )}
+      </section>
+      </main>
     </div>
   );
 }

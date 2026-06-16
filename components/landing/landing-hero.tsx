@@ -42,7 +42,7 @@ export function LandingHero() {
               transition={{ duration: 0.6 }}
             >
               <BookOpen className="h-3.5 w-3.5" />
-              Entrance Exam Practice Platform
+              Open Exam Practice Tool
             </motion.div>
 
             <motion.h1
@@ -53,7 +53,7 @@ export function LandingHero() {
               transition={{ duration: 0.7, delay: 0.1 }}
             >
               <span className="bg-gradient-to-r from-brand-text via-brand-primary to-brand-secondary bg-clip-text text-transparent">
-                Master Your Entrance Exam
+                Master Any Exam
               </span>
             </motion.h1>
 
@@ -64,8 +64,8 @@ export function LandingHero() {
               variants={fadeUp}
               transition={{ duration: 0.7, delay: 0.2 }}
             >
-              Free practice platform for Ethiopian Grade 12 students. Browse by
-              subject, tackle past questions, and build confidence for exam day.
+              An open-source, community-driven exam practice tool. Study any
+              subject, contribute questions, and practice for any exam.
             </motion.p>
 
             <motion.div
@@ -100,7 +100,7 @@ export function LandingHero() {
                 <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-brand-primary to-brand-secondary text-white">
                   <Smartphone className="h-4 w-4" />
                 </div>
-                <span>Web Platform</span>
+                <span>Web Tool</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-brand-primary to-brand-secondary text-white">

@@ -20,7 +20,7 @@ export function HistoryPageClient() {
       <main className="flex-1">
         <PageHeader
           title="History"
-          eyebrow="Entrance Exam Practice"
+          eyebrow="Open Exam Practice"
           subtitle="Review your previous attempts and keep improving."
           backHref="/subjects"
           backLabel="Subjects"

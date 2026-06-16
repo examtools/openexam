@@ -34,11 +34,11 @@ export function LandingCta() {
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-4xl font-extrabold tracking-tight text-white md:text-5xl">
-            Ready to Ace Your Entrance Exam?
+            Ready to Master Your Exam?
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-white/80">
-            Join thousands of Ethiopian Grade 12 students already using our platform
-            to prepare for their exams. Start practicing today — it&apos;s completely free.
+            Join a growing community of students using open-source tools to prepare
+            for their exams. Start practicing today — it&apos;s completely free.
           </p>
 
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">

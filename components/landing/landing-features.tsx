@@ -41,9 +41,9 @@ const features = [
   },
   {
     step: "06",
-    title: "Completely Free",
+    title: "Open Source",
     description:
-      "No hidden fees, no subscriptions. Every feature is available for free to all Ethiopian Grade 12 students.",
+      "Fully open source. Anyone can contribute questions, improve the tool, and help build a better study tool for everyone.",
     icon: Award,
   },
 ];
@@ -66,7 +66,7 @@ export function LandingFeatures() {
             Everything You Need
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-brand-textSecondary">
-            Powerful tools designed to help you ace your entrance exam with confidence.
+            Powerful tools designed to help you ace any exam with confidence.
           </p>
         </motion.div>
 

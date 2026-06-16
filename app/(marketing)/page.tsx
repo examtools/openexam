@@ -12,14 +12,15 @@ import { buildPageMetadata, siteConfig } from "@/lib/seo/site";
 
 export const metadata: Metadata = {
   ...buildPageMetadata({
-    title: "Entrance Exam Practice Platform",
+    title: "Open Exam Practice Tool",
     description:
-      "Free Ethiopian entrance exam practice platform. Practice with past questions, subject filters, realistic test mode, and instant review.",
+      "An open-source, community-driven exam practice tool. Study any subject, contribute questions, practice with instant feedback, and realistic test mode.",
     path: "/",
     keywords: [
-      "ethiopian entrance exam practice app",
-      "free ethiopian entrance exam practice",
-      "ethiopian grade 12 entrance exam questions",
+      "open source exam practice",
+      "free exam practice tool",
+      "community driven study questions",
+      "exam preparation tool",
     ],
   }),
 };
@@ -44,10 +45,10 @@ export default async function LandingPage() {
   const websiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    name: "Entrance Exam Practice Platform",
+    name: "Open Exam Practice Tool",
     url: siteConfig.url,
     description:
-      "Free Ethiopian entrance exam practice with subject pages, year-based exam sets, and realistic study tools.",
+      "Open-source exam practice with subject pages, year-based exam sets, and realistic study tools.",
     isPartOf: {
       "@type": "WebSite",
       name: siteConfig.name,

@@ -58,10 +58,10 @@ export default async function OpenGraphImage() {
                 color: "rgba(67, 40, 24, 0.65)",
               }}
             >
-               Entrance Exam Practice
+               Open Exam Practice
             </div>
             <div style={{ fontSize: 78, lineHeight: 1.02, maxWidth: 820, fontWeight: 700 }}>
-              Entrance Exam Practice Platform
+              Open Exam Practice Tool
             </div>
             <div
               style={{
@@ -72,8 +72,7 @@ export default async function OpenGraphImage() {
                 color: "rgba(37, 24, 16, 0.84)",
               }}
             >
-              Free entrance exam practice with instant feedback, test mode, and subject-based browsing
-              for Ethiopian Grade 12 students.
+              An open-source, community-driven exam practice tool. Study any subject, contribute questions, and practice for any exam.
             </div>
           </div>
 

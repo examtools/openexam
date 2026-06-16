@@ -8,7 +8,7 @@ const steps = [
     number: "01",
     title: "Choose Your Subject",
     description:
-      "Browse subjects and find the exam set that matches your studies. All questions are organized for easy navigation.",
+      "Browse available subjects and find the exam set that matches what you're studying. Questions are organized for easy navigation.",
     icon: Search,
   },
   {
@@ -51,7 +51,7 @@ export function LandingHowItWorks() {
             How It Works
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-brand-textSecondary">
-            Getting started with your exam preparation is easy. Follow these three simple steps.
+            Getting started with your exam preparation is easy.
           </p>
         </motion.div>
 
