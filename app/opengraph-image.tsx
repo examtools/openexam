@@ -61,7 +61,7 @@ export default async function OpenGraphImage() {
                Entrance Exam Practice
             </div>
             <div style={{ fontSize: 78, lineHeight: 1.02, maxWidth: 820, fontWeight: 700 }}>
-              Alyah Entrance Exam Platform
+              Entrance Exam Practice Platform
             </div>
             <div
               style={{

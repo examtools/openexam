@@ -7,7 +7,7 @@ import type { SubjectMeta } from "@/lib/exam/types";
 import { Input } from "@/components/ui/input";
 import { Pill } from "@/components/ui/pill";
 import { PageHeader } from "@/components/ui/page-header";
-import { LandingFooter } from "@/components/landing/landing-footer";
+
 
 export function SubjectList({ subjects }: { subjects: SubjectMeta[] }) {
   const [query, setQuery] = useState("");
@@ -23,7 +23,7 @@ export function SubjectList({ subjects }: { subjects: SubjectMeta[] }) {
       <main className="flex-1">
         <PageHeader
           title="Subjects"
-          eyebrow="Alyah Technologies"
+          eyebrow="Entrance Exam Practice"
           subtitle="Choose your subject and explore past exam sets. Clean, fast, and 100% free."
           backHref="/"
           backLabel="Home"
@@ -78,7 +78,6 @@ export function SubjectList({ subjects }: { subjects: SubjectMeta[] }) {
           )}
         </section>
       </main>
-      <LandingFooter />
     </div>
   );
 }

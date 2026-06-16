@@ -1,7 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { ExamCard } from "@/components/catalog/exam-card";
-import { LandingFooter } from "@/components/landing/landing-footer";
 import { StructuredData } from "@/components/seo/structured-data";
 import { PageHeader } from "@/components/ui/page-header";
 import { getSubjectBySlug, getSubjects } from "@/lib/data/generated";
@@ -66,7 +65,6 @@ export default async function SubjectPage({
             </Link>
           </div>
         </main>
-        <LandingFooter />
       </div>
     );
   }
@@ -136,7 +134,6 @@ export default async function SubjectPage({
           </div>
         </section>
       </main>
-      <LandingFooter />
     </div>
   );
 }

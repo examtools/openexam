@@ -1,14 +1,13 @@
 import type { Metadata } from "next";
 
 export const siteConfig = {
-  name: "Alyah Technologies",
-  shortName: "Alyah Tech",
-  url: "https://alyah.tech",
+  name: "Entrance Exam Practice",
+  shortName: "Entrance Practice",
+  url: "https://practice.bilsul.com",
   description:
-    "Alyah Technologies — Building digital excellence. Practice Ethiopian Grade 12 entrance exams with past questions, instant feedback, and realistic test mode.",
+    "Practice Ethiopian Grade 12 entrance exams with past questions, instant feedback, and realistic test mode.",
   locale: "en_ET",
   keywords: [
-    "alyah technologies",
     "ethiopian entrance exam",
     "ethiopian grade 12 entrance exam practice",
     "entrance exam practice ethiopia",
@@ -22,8 +21,6 @@ export const siteConfig = {
     "euee",
     "ethiopian education",
     "ethiopian students",
-    "alyah software",
-    "alyah tech"
   ],
 } as const;
 

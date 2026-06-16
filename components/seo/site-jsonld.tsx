@@ -15,8 +15,7 @@ export async function SiteJsonLd() {
       image: absoluteUrl("/exitLogo.png"),
       description: siteConfig.description,
       sameAs: [
-        "https://t.me/alyahsoftware",
-        "https://linkedin.com/company/alyahsoftware",
+        "https://t.me/entrance_exam_practice",
       ],
     },
     {

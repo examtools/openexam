@@ -4,7 +4,6 @@ import { Suspense } from "react";
 
 import { StructuredData } from "@/components/seo/structured-data";
 import { ExamClient } from "@/components/exam/exam-client";
-import { LandingFooter } from "@/components/landing/landing-footer";
 import { PageHeader } from "@/components/ui/page-header";
 import { getExamMetaById, readExamDataset, readManifest } from "@/lib/data/generated";
 import { absoluteUrl, buildPageMetadata } from "@/lib/seo/site";
@@ -60,7 +59,6 @@ export default async function ExamPage({ params }: { params: Promise<{ examId: s
             </Link>
           </div>
         </main>
-        <LandingFooter />
       </div>
     );
   }
@@ -137,7 +135,6 @@ export default async function ExamPage({ params }: { params: Promise<{ examId: s
           </Suspense>
         </section>
       </main>
-      <LandingFooter />
     </div>
   );
 }

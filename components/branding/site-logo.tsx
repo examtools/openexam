@@ -49,7 +49,7 @@ function SiteLogoInner({
       >
         <Image
           src="/icon.png"
-          alt="Alyah Technologies logo"
+          alt="Entrance Exam Practice logo"
           fill
           priority={priority}
           sizes="56px"
@@ -58,9 +58,9 @@ function SiteLogoInner({
       </div>
       {showWordmark && (
         <div className={cn("leading-none", labelClassName)}>
-          <p className="text-[10px] uppercase tracking-[0.32em] text-brand-primary/60">Alyah</p>
+          <p className="text-[10px] uppercase tracking-[0.32em] text-brand-primary/60">Entrance</p>
           <p className={cn("mt-1 font-display text-brand-primaryDark", config.label)}>
-            Technologies
+            Exam Practice
           </p>
         </div>
       )}
@@ -76,7 +76,7 @@ export function SiteLogo({ linked = false, ...props }: SiteLogoProps) {
   return (
     <Link
       href="/"
-      aria-label="Go to Alyah Technologies home"
+      aria-label="Go to Entrance Exam Practice home"
       className="inline-flex rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/40 focus-visible:ring-offset-2"
     >
       <SiteLogoInner {...props} />

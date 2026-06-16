@@ -5,7 +5,6 @@ import { LandingStats } from "@/components/landing/landing-stats";
 import { LandingHowItWorks } from "@/components/landing/landing-how-it-works";
 import { LandingFeatures } from "@/components/landing/landing-features";
 import { LandingCta } from "@/components/landing/landing-cta";
-import { LandingFooter } from "@/components/landing/landing-footer";
 import { getLandingFaqSchema } from "@/components/landing/landing-seo-sections";
 import { StructuredData } from "@/components/seo/structured-data";
 import { readManifest } from "@/lib/data/generated";
@@ -15,10 +14,9 @@ export const metadata: Metadata = {
   ...buildPageMetadata({
     title: "Entrance Exam Practice Platform",
     description:
-      "Free Ethiopian entrance exam practice platform by Alyah Technologies. Practice with past questions, subject filters, realistic test mode, and instant review.",
+      "Free Ethiopian entrance exam practice platform. Practice with past questions, subject filters, realistic test mode, and instant review.",
     path: "/",
     keywords: [
-      "alyah technologies entrance exam",
       "ethiopian entrance exam practice app",
       "free ethiopian entrance exam practice",
       "ethiopian grade 12 entrance exam questions",
@@ -66,7 +64,6 @@ export default async function LandingPage() {
       <LandingHowItWorks />
       <LandingFeatures />
       <LandingCta />
-      <LandingFooter />
     </>
   );
 }

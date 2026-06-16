@@ -1,12 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 import { SiteLogo } from "@/components/branding/site-logo";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
+
+const BANNER_KEY = "donation-banner-dismissed";
 
 const navLinks = [
   { href: "/subjects", label: "Subjects" },
@@ -16,11 +18,44 @@ const navLinks = [
 
 export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [bannerDismissed, setBannerDismissed] = useState(true);
+
+  useEffect(() => {
+    setBannerDismissed(sessionStorage.getItem(BANNER_KEY) === "true");
+  }, []);
+
+  function handleDismissBanner() {
+    sessionStorage.setItem(BANNER_KEY, "true");
+    setBannerDismissed(true);
+  }
 
   const close = () => setMobileOpen(false);
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 bg-brand-bg transition-colors">
+      {!bannerDismissed && (
+        <div className="flex items-center justify-center gap-2 bg-gradient-to-r from-amber-50 to-yellow-50 px-4 py-1.5 text-xs text-amber-900 dark:from-amber-950/30 dark:to-yellow-950/30 dark:text-amber-200">
+          <span>
+            Support this project on{" "}
+            <a
+              href="https://patreon.com/mafianextdoor"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold underline underline-offset-2 transition hover:text-amber-700 dark:hover:text-amber-300"
+            >
+              Patreon
+            </a>
+          </span>
+          <button
+            type="button"
+            onClick={handleDismissBanner}
+            className="ml-1 flex h-4 w-4 items-center justify-center rounded-full text-amber-500 hover:bg-amber-200/60 hover:text-amber-700 dark:hover:bg-amber-800/40 dark:hover:text-amber-300"
+            aria-label="Dismiss donation banner"
+          >
+            <X className="h-2.5 w-2.5" />
+          </button>
+        </div>
+      )}
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 sm:px-6">
         <SiteLogo linked size="sm" />
 

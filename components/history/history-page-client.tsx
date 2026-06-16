@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 
 import type { PersistedAttempt } from "@/lib/exam/types";
-import { LandingFooter } from "@/components/landing/landing-footer";
 import { PageHeader } from "@/components/ui/page-header";
 import { readHistory } from "@/lib/storage/store";
 import { formatDateTime, formatDuration } from "@/lib/utils/time";
@@ -21,7 +20,7 @@ export function HistoryPageClient() {
       <main className="flex-1">
         <PageHeader
           title="History"
-          eyebrow="Alyah Technologies"
+          eyebrow="Entrance Exam Practice"
           subtitle="Review your previous attempts and keep improving."
           backHref="/subjects"
           backLabel="Subjects"
@@ -64,7 +63,6 @@ export function HistoryPageClient() {
           )}
         </section>
       </main>
-      <LandingFooter />
     </div>
   );
 }

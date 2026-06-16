@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="public/images/sponsor.png" alt="Alyah Technologies" height="140" />
+  <img src="public/images/sponsor.png" alt="Entrance Exam Practice" height="140" />
 </p>
 
 <br/>
