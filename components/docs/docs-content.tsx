@@ -280,13 +280,12 @@ export function DocsContent() {
               <p>
                 The live site is deployed at{" "}
                 <a
-                  href="https://examtools.github.io/openexam/"
+                  href="https://openexams.vercel.app"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="font-medium text-brand-primary underline underline-offset-2 transition hover:text-brand-primaryDark"
                 >
-                  examtools.github.io/openexam
-                </a>
+                  openexams.vercel.app                </a>
                 .
               </p>
               <ol className="list-decimal space-y-2 pl-5">
