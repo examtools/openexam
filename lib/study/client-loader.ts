@@ -47,3 +47,7 @@ export async function preloadCards(cards: StudyCard[]): Promise<void> {
     Array.from(examIds).map((id) => ensureExamLoaded(id)),
   );
 }
+
+export function clearExamCache(): void {
+  cache.clear();
+}

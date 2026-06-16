@@ -1,22 +1,37 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
-import { Plus, BookOpen, Clock, BarChart3 } from "lucide-react";
+import { Plus, BookOpen, Clock, BarChart3, Trash2 } from "lucide-react";
 import type { StudySession } from "@/lib/study/types";
-import { listStudySessions, getDueCardCount } from "@/lib/storage/study-store";
+import {
+  listStudySessions,
+  getDueCardCount,
+  deleteStudySession,
+} from "@/lib/storage/study-store";
 import { loadStudyConfig } from "@/lib/study/config";
 import { PageHeader } from "@/components/ui/page-header";
+import { ConfirmDialog } from "@/components/ui/confirm-dialog";
 
 export function StudyHome() {
   const [sessions, setSessions] = useState<StudySession[]>([]);
   const [dueCount, setDueCount] = useState(0);
   const [config, setConfig] = useState(loadStudyConfig);
+  const [deleteTarget, setDeleteTarget] = useState<StudySession | null>(null);
 
   useEffect(() => {
     setSessions(listStudySessions());
     setDueCount(getDueCardCount());
   }, []);
+
+  const handleDeleteSession = useCallback(() => {
+    if (!deleteTarget) return;
+    deleteStudySession(deleteTarget.sessionId);
+    setSessions((prev) =>
+      prev.filter((s) => s.sessionId !== deleteTarget.sessionId),
+    );
+    setDeleteTarget(null);
+  }, [deleteTarget]);
 
   const activeSessions = sessions.filter((s) => s.status === "active");
   const completedSessions = sessions.filter((s) => s.status === "completed");
@@ -78,34 +93,61 @@ export function StudyHome() {
           </h2>
           <div className="mt-3 space-y-2">
             {activeSessions.slice(0, 5).map((s) => (
-              <Link
+              <div
                 key={s.sessionId}
-                href={`/study/${s.sessionId}`}
-                className="flex items-center justify-between rounded-xl border border-brand-border bg-brand-bg px-5 py-4 transition hover:border-brand-primary/40"
+                className="flex items-center gap-2 rounded-xl border border-brand-border bg-brand-bg px-5 py-4 transition hover:border-brand-primary/40 group"
               >
-                <div>
-                  <p className="text-sm font-semibold text-brand-text">
-                    {poolLabel(s.pool)}
-                  </p>
-                  <p className="mt-0.5 text-xs text-brand-textTertiary">
-                    {s.answeredCards}/{s.totalCards} cards ·{" "}
-                    {s.responseMode === "recall"
-                      ? "Recall"
-                      : s.responseMode === "mix"
-                        ? "Mix"
-                        : "MC"}
-                  </p>
-                </div>
-                <span className="text-xs font-medium text-brand-primary">
-                  {s.totalCards > 0
-                    ? `${Math.round((s.answeredCards / s.totalCards) * 100)}%`
-                    : "0%"}
-                </span>
-              </Link>
+                <Link
+                  href={`/study/${s.sessionId}`}
+                  className="flex flex-1 items-center justify-between"
+                >
+                  <div>
+                    <p className="text-sm font-semibold text-brand-text">
+                      {poolLabel(s.pool)}
+                    </p>
+                    <p className="mt-0.5 text-xs text-brand-textTertiary">
+                      {s.answeredCards}/{s.totalCards} cards ·{" "}
+                      {s.responseMode === "recall"
+                        ? "Recall"
+                        : s.responseMode === "mix"
+                          ? "Mix"
+                          : "MC"}
+                    </p>
+                  </div>
+                  <span className="text-xs font-medium text-brand-primary">
+                    {s.totalCards > 0
+                      ? `${Math.round((s.answeredCards / s.totalCards) * 100)}%`
+                      : "0%"}
+                  </span>
+                </Link>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setDeleteTarget(s);
+                  }}
+                  className="shrink-0 rounded-lg p-2 text-brand-textTertiary opacity-0 transition hover:bg-red-50 hover:text-red-600 group-hover:opacity-100"
+                  title="Delete session"
+                >
+                  <Trash2 className="h-4 w-4" />
+                </button>
+              </div>
             ))}
           </div>
         </div>
       )}
+
+      <ConfirmDialog
+        open={deleteTarget !== null}
+        title="Delete study session?"
+        message={
+          deleteTarget
+            ? `This will permanently delete the "${poolLabel(deleteTarget.pool)}" study session and all its progress.`
+            : ""
+        }
+        confirmLabel="Delete"
+        onConfirm={handleDeleteSession}
+        onCancel={() => setDeleteTarget(null)}
+      />
 
       {completedSessions.length > 0 && (
         <div className="mt-10">

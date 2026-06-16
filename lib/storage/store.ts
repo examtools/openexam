@@ -200,3 +200,35 @@ export function updateDefaultMode(mode: "practice" | "test"): void {
 export function readPreferences() {
   return loadStorage().preferences;
 }
+
+export function deleteHistoryEntry(attemptId: string): void {
+  const storage = loadStorage();
+  storage.history = storage.history.filter(
+    (entry) => entry.attemptId !== attemptId,
+  );
+  persistStorage(storage);
+}
+
+export function clearAllData(): void {
+  if (!isBrowser()) return;
+
+  const keys = [
+    STORAGE_KEY,
+    "practice-exit-exam:study-config",
+    "theme",
+    "donation-banner-dismissed",
+  ];
+
+  for (const key of keys) {
+    try {
+      localStorage.removeItem(key);
+    } catch {
+      // ignore
+    }
+  }
+
+  const { clearExamCache } = require("@/lib/study/client-loader") as {
+    clearExamCache?: () => void;
+  };
+  clearExamCache?.();
+}

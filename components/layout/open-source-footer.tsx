@@ -31,7 +31,7 @@ export function OpenSourceFooter() {
               </li>
               <li>
                 <a
-                  href="https://github.com/examtools/openexams"
+                  href="https://github.com/examtools"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-sm text-brand-textSecondary transition-colors hover:text-brand-primary"
@@ -62,7 +62,7 @@ export function OpenSourceFooter() {
             Open source · MIT License
           </p>
           <a
-            href="https://github.com/examtools/openexams"
+            href="https://github.com/examtools"
             target="_blank"
             rel="noopener noreferrer"
             className="text-xs text-brand-textTertiary/60 transition-colors hover:text-brand-textTertiary"

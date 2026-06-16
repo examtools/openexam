@@ -1,18 +1,37 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
+import { Trash2, RotateCcw } from "lucide-react";
 
 import type { PersistedAttempt } from "@/lib/exam/types";
 import { PageHeader } from "@/components/ui/page-header";
-import { readHistory } from "@/lib/storage/store";
+import { readHistory, deleteHistoryEntry, clearAllData } from "@/lib/storage/store";
 import { formatDateTime, formatDuration } from "@/lib/utils/time";
+import { ConfirmDialog } from "@/components/ui/confirm-dialog";
 
 export function HistoryPageClient() {
   const [history, setHistory] = useState<PersistedAttempt[]>([]);
+  const [deleteTarget, setDeleteTarget] = useState<PersistedAttempt | null>(null);
+  const [clearAllOpen, setClearAllOpen] = useState(false);
 
   useEffect(() => {
     setHistory(readHistory());
+  }, []);
+
+  const handleDeleteEntry = useCallback(() => {
+    if (!deleteTarget) return;
+    deleteHistoryEntry(deleteTarget.attemptId);
+    setHistory((prev) =>
+      prev.filter((a) => a.attemptId !== deleteTarget.attemptId),
+    );
+    setDeleteTarget(null);
+  }, [deleteTarget]);
+
+  const handleClearAll = useCallback(() => {
+    clearAllData();
+    setHistory([]);
+    setClearAllOpen(false);
   }, []);
 
   return (
@@ -27,11 +46,23 @@ export function HistoryPageClient() {
         />
 
         <section className="page-section mx-auto max-w-6xl">
+          {history.length > 0 && (
+            <div className="mb-6 flex justify-end">
+              <button
+                onClick={() => setClearAllOpen(true)}
+                className="flex items-center gap-2 rounded-xl border border-red-200 bg-red-50 px-4 py-2 text-sm font-semibold text-red-600 transition hover:bg-red-100"
+              >
+                <RotateCcw className="h-4 w-4" />
+                Clear All Data
+              </button>
+            </div>
+          )}
+
           <div className="grid gap-6">
             {history.map((attempt) => (
               <div
                 key={attempt.attemptId}
-                className="rounded-2xl border border-brand-border bg-brand-bg p-6 md:flex md:items-center md:justify-between"
+                className="rounded-2xl border border-brand-border bg-brand-bg p-6 md:flex md:items-center md:justify-between group"
               >
                 <div>
                   <h2 className="text-lg font-semibold text-brand-text">
@@ -53,6 +84,13 @@ export function HistoryPageClient() {
                   >
                     Review
                   </Link>
+                  <button
+                    onClick={() => setDeleteTarget(attempt)}
+                    className="rounded-lg p-2 text-brand-textTertiary transition hover:bg-red-50 hover:text-red-600"
+                    title="Delete entry"
+                  >
+                    <Trash2 className="h-4 w-4" />
+                  </button>
                 </div>
               </div>
             ))}
@@ -63,6 +101,28 @@ export function HistoryPageClient() {
           )}
         </section>
       </main>
+
+      <ConfirmDialog
+        open={deleteTarget !== null}
+        title="Delete history entry?"
+        message={
+          deleteTarget
+            ? `This will permanently remove the "${deleteTarget.subjectName} · ${deleteTarget.displayYear}" attempt from your history.`
+            : ""
+        }
+        confirmLabel="Delete"
+        onConfirm={handleDeleteEntry}
+        onCancel={() => setDeleteTarget(null)}
+      />
+
+      <ConfirmDialog
+        open={clearAllOpen}
+        title="Clear all data?"
+        message="This will permanently delete all your exam history, study sessions, card reviews, and preferences. This action cannot be undone."
+        confirmLabel="Clear Everything"
+        onConfirm={handleClearAll}
+        onCancel={() => setClearAllOpen(false)}
+      />
     </div>
   );
 }
