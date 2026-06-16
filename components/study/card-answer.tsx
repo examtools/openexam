@@ -18,7 +18,7 @@ export function CardAnswer({
     <div className="space-y-4">
       <div
         className={cn(
-          "flex items-center gap-3 rounded-xl border p-4",
+          "flex items-center gap-3 rounded-xl border p-3 sm:p-4",
           isCorrect
             ? "border-brand-success bg-brand-success/10"
             : "border-brand-error bg-brand-error/10",

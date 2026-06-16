@@ -31,7 +31,7 @@ export function StudySessionPageClient({
 
   if (loading) {
     return (
-      <div className="mx-auto max-w-2xl py-16 pt-20 text-center">
+      <div className="mx-auto max-w-2xl px-4 py-16 pt-20 text-center sm:px-6">
         <p className="text-brand-textSecondary">Loading session...</p>
       </div>
     );

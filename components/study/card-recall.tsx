@@ -23,7 +23,7 @@ export function CardRecall({
         <button
           type="button"
           onClick={onReveal}
-          className="flex w-full items-center justify-center gap-3 rounded-2xl border-2 border-dashed border-brand-primary/40 bg-brand-primary/5 px-6 py-8 text-brand-primary transition hover:border-brand-primary/60 hover:bg-brand-primary/10"
+          className="flex w-full items-center justify-center gap-3 rounded-2xl border-2 border-dashed border-brand-primary/40 bg-brand-primary/5 px-4 py-6 text-brand-primary transition hover:border-brand-primary/60 hover:bg-brand-primary/10 sm:px-6 sm:py-8"
         >
           <Eye className="h-6 w-6" />
           <span className="text-lg font-semibold">Tap to Reveal Answer</span>

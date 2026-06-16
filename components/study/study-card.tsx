@@ -43,7 +43,7 @@ export function StudyCard({
 
   return (
     <div className="space-y-6">
-      <div className="rounded-2xl border border-brand-border bg-brand-bg p-6">
+      <div className="rounded-2xl border border-brand-border bg-brand-bg p-4 sm:p-6">
         {actualMode === "multiple-choice" ? (
           <CardMultipleChoice
             question={question}
